@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import Flask, abort, request, json, jsonify
-from flask_restful import Api, Resource
+from flask_restful import Api, Resource, reqparse
 from flask_migrate import Migrate
 from flask_cors import CORS
 import config.default as conf
@@ -18,6 +18,8 @@ cors = CORS(apli)
 # API Rest routes
 
 vtuber_schema = VTuberSchema()
+parser = reqparse.RequestParser()
+parser.add_argument('fullname', type=str, help="VTuber's fullname")
 
 class ListVTubers(Resource):
     def get(self):
@@ -27,12 +29,22 @@ class ListVTubers(Resource):
 
 class GetVTuber(Resource):
     def get(self, vtid:int):
-        vtuber = VTuber.query.get(vtid)
+        vtuber = db.session.get(VTuber, vtid)
         if vtuber is None:
             abort(404, "The VTuber does not exists.")
         response = vtuber_schema.dump(vtuber)
         return response, 200
 
+class FindVTuber(Resource):
+    def get(self):
+        args = parser.parse_args()
+        fullname = args["fullname"]
+        vtuber = VTuber.query.filter(VTuber.fullname.ilike(f"%{fullname}%"))
+        if vtuber is None:
+            abort(404, "The VTuber does not exists.")
+        response = vtuber_schema.dump(vtuber)
+        return response
+        
 class CreateVTuber(Resource):
     def post(self):
         data = request.get_json()
@@ -93,10 +105,11 @@ class UpdateVTuber(Resource):
 api.add_resource(ListVTubers, "/v1/vtuber", endpoint='vtubers')
 api.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>", endpoint='get-vtuber-id')
 api.add_resource(CreateVTuber, "/v1/vtuber/create", endpoint='create-vtuber')
+api.add_resource(FindVTuber, "/v1/vtuber/find", endpoint='find-vtuber')
 api.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>", endpoint='delete-vtuber')
 api.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>", endpoint='update-vtuber')
 
-@apli.errorhandler(Exception)
+@apli.errorhandler(HTTPException)
 def error500(e):
     timestamp = datetime.now().timestamp()
     data = {
@@ -109,3 +122,7 @@ def error500(e):
 @apli.route('/')
 def index():
     return "hola mundo!"
+
+
+if __name__ == '__main__':
+    apli.run(debug=False)
