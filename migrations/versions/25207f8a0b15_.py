@@ -1,8 +1,8 @@
-"""holoapi_initdb
+"""empty message
 
-Revision ID: cb5dc10a6dd3
+Revision ID: 25207f8a0b15
 Revises: 
-Create Date: 2023-05-24 01:20:02.520395
+Create Date: 2023-05-24 01:55:42.425829
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = 'cb5dc10a6dd3'
+revision = '25207f8a0b15'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,9 +26,16 @@ def upgrade():
     sa.Column('age', sa.Integer(), nullable=True),
     sa.Column('units', mysql.JSON(), nullable=True),
     sa.Column('debut', sa.Date(), nullable=True),
+    sa.Column('fanname', sa.String(length=50), nullable=True),
+    sa.Column('zodiac', sa.String(length=20), nullable=True),
+    sa.Column('birthday', sa.String(length=50), nullable=True),
+    sa.Column('height', sa.Integer(), nullable=True),
+    sa.Column('youtube', sa.String(length=150), nullable=True),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('fanname'),
     sa.UniqueConstraint('fullname'),
-    sa.UniqueConstraint('kanji')
+    sa.UniqueConstraint('kanji'),
+    sa.UniqueConstraint('youtube')
     )
     # ### end Alembic commands ###
 

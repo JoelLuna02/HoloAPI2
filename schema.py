@@ -6,4 +6,9 @@ ma = Marshmallow()
 class VTuberSchema(ma.Schema):
     class Meta:
         model = VTuber
-        fields = ("id", "fullname", "kanji", "gender", "age", "units", "debut")
+        fields = (
+            "id", "fullname", "kanji", "gender", "age", "units",
+            "debut", "fanname", "zodiac", "birthday", "height",
+            "youtube"
+        )
+
