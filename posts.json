@@ -1,0 +1,219 @@
+{
+    "fullname": "Mori Calliope",
+    "kanji": "森カリオペ",
+    "gender": "Female",
+    "age": 0,
+    "units": [
+        "Hololive-EN",
+        "Myth"
+    ],
+    "debut": "2020-09-12",
+    "fanname": "Dead Beats",
+    "zodiac": "Aries",
+    "birthday": "April 4",
+    "height": 167,
+    "youtube": "https://www.youtube.com/@MoriCalliope",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/imgfile/calliope.jpg",
+        "source": "https://twitter.com/Nekomeshi17Nez/status/1580269421204893696",
+        "creator": "@Nekomeshi17Nez (NEZん)",
+        "app": "Twitter"
+    },
+    "illust": "Yukisame",
+    "hashtags": {
+        "stream_tag": "#calliolive #カリオライ",
+        "fanart_tag": "#calliolive #カリオライ"
+    },
+    "aliases": [
+        {
+            "alias": "Calli"
+        },
+        {
+            "alias": "Miss Mori"
+        },
+        {
+            "alias": "CallioP"
+        },
+        {
+            "alias": "Dad"
+        },
+        {
+            "alias": "Kawaiiope"
+        },
+        {
+            "alias": "Calvin Mori"
+        },
+        {
+            "alias": "YUNG SH1N1GAM1 BO1"
+        },
+        {
+            "alias": "C-Man"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/moricalliope"
+        },
+        {
+            "socialapp": "Twitch",
+            "socialurl": "https://www.twitch.tv/moricalliope_hololiveen"
+        },
+        {
+            "socialapp": "TikTok",
+            "socialurl": "https://www.tiktok.com/@moricalliope_hololiveen"
+        }
+    ],
+    "songs": [
+        {
+            "name": "Reaper or Rapper? Introduction Rap",
+            "album": "DEAD BEATS",
+            "releasedate": "2022-09-17",
+            "compositor": "kokorobeats a.k.a K's/Coro",
+            "lyrics": "Mori Calliope",
+            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+        },
+        {
+            "name": "Excuse My Rudeness, But Could You Please RIP?♡",
+            "album": "DEAD BEATS",
+            "releasedate": "2022-09-17",
+            "compositor": "kokorobeats a.k.a K's/Coro",
+            "lyrics": "Mori Calliope",
+            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+        },
+        {
+            "name": "DEAD BEATS",
+            "album": "DEAD BEATS",
+            "releasedate": "2022-09-17",
+            "compositor": "kokorobeats a.k.a K's/Coro",
+            "lyrics": "Mori Calliope",
+            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+        },
+        {
+            "name": "Live Again",
+            "album": "DEAD BEATS",
+            "releasedate": "2022-09-19",
+            "compositor": "kokorobeats a.k.a K's/Coro",
+            "lyrics": "Mori Calliope",
+            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+        }
+    ]
+}
+{
+    "fullname": "Takanashi Kiara",
+    "kanji": "小鳥遊キアラ",
+    "gender": "Female",
+    "age": -1,
+    "units": [
+        "Hololive-EN",
+        "Myth"
+    ],
+    "debut": "2020-09-12",
+    "fanname": "kfp",
+    "zodiac": "Cancer",
+    "birthday": "July 6",
+    "height": 165,
+    "youtube": "https://www.youtube.com/@TakanashiKiara",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/imgfile/kiara.jpg",
+        "source": "https://twitter.com/tkkRamune/status/1606261164110921731",
+        "creator": "@tkkRamune (テキカ Ramune illust.🍥)",
+        "app": "Twitter"
+    },
+    "illust": "huke",
+    "hashtags": {
+        "stream_tag": "#kfp #キアライブ",
+        "fanart_tag": "#artsofashes #絵ニックス"
+    },
+    "aliases": [
+        {
+            "alias": "Kusotori"
+        },
+        {
+            "alias": "Tenchou"
+        },
+        {
+            "alias": "Kiwawa"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/takanashikiara"
+        }
+    ],
+    "songs": [
+        {
+            "name": "Heart Challenger",
+            "album": "Heart Challenger",
+            "releasedate": "2020-02-13",
+            "compositor": "Kai Gojo",
+            "lyrics": "Aya Shinno",
+            "portrait": "http://localhost:8080/v1/assets/imgfile/heartchallenger.jpg"
+        },
+        {
+            "name": "HINOTORI",
+            "album": "HINOTORI",
+            "releasedate": "2020-11-26",
+            "compositor": "Kai Gojo",
+            "lyrics": "Aya Shinno",
+            "portrait": "http://localhost:8080/v1/assets/imgfile/hinotori.png"
+        },
+        {
+            "name": "SPARKS",
+            "album": "SPARKS",
+            "releasedate": "2021-07-06",
+            "compositor": "KIRA",
+            "lyrics": "KIRA",
+            "portrait": "http://localhost:8080/v1/assets/imgfile/sparks.png"
+        }
+    ]
+}
+{
+    "fullname": "Gawr Gura",
+    "kanji": "がうる・ぐら",
+    "gender": "Female",
+    "age": 10000,
+    "units": [
+        "Hololive-EN",
+        "Myth"
+    ],
+    "debut": "2020-09-13",
+    "fanname": "chumbuds",
+    "zodiac": "Geminis",
+    "birthday": "June 20",
+    "height": 141,
+    "youtube": "https://www.youtube.com/@GawrGura",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/imgfile/gura.jpg",
+        "source": "https://www.pixiv.net/en/artworks/95150374",
+        "creator": "一条レイ (Ichigo Rei)",
+        "app": "Pixiv"
+    },
+    "illust": "Amashiro Natsuki",
+    "hashtags": {
+        "stream_tag": "#gawrgura",
+        "fanart_tag": "#gawrt",
+    },
+    "aliases": [
+        {
+            "alias": "Same-chan"
+        },
+        {
+            "alias": "Apex Predator"
+        }
+        {
+            "alias": "City Pop Shark"
+        }
+        {
+            "alias": "Samegaki"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/gawrgura"
+        }
+    ],
+    "songs": []
+}
