@@ -2,6 +2,8 @@ from datetime import datetime
 from flask import Flask, abort, request, json, jsonify
 from flask_restful import Api, Resource, reqparse
 from flask_migrate import Migrate
+from werkzeug.exceptions import HTTPException, NotFound
+from collections import OrderedDict
 from flask_cors import CORS
 import config.default as conf
 from models import db, VTuber
@@ -15,23 +17,23 @@ api = Api(apli)                 # Restful init
 mi = Migrate(apli, db)          # Migrate init
 cors = CORS(apli)
 
-# API Rest routes
-
 vtuber_schema = VTuberSchema()
 parser = reqparse.RequestParser()
 parser.add_argument('fullname', type=str, help="VTuber's fullname")
 
+# API REST Routes
+
 class ListVTubers(Resource):
     def get(self):
-        vtuber = VTuber.query.all()
-        response = vtuber_schema.dump(vtuber, many=True)
+        vtubers = VTuber.query.all()
+        response = vtuber_schema.dump(vtubers, many=True)
         return response, 200
 
 class GetVTuber(Resource):
     def get(self, vtid:int):
         vtuber = db.session.get(VTuber, vtid)
         if vtuber is None:
-            abort(404, "The VTuber does not exists.")
+            raise NotFound("The VTuber does not exists.")
         response = vtuber_schema.dump(vtuber)
         return response, 200
 
@@ -41,10 +43,10 @@ class FindVTuber(Resource):
         fullname = args["fullname"]
         vtuber = VTuber.query.filter(VTuber.fullname.ilike(f"%{fullname}%"))
         if vtuber is None:
-            abort(404, "The VTuber does not exists.")
+            raise NotFound("The VTuber does not exists.")
         response = vtuber_schema.dump(vtuber)
         return response
-        
+
 class CreateVTuber(Resource):
     def post(self):
         data = request.get_json()
@@ -114,10 +116,12 @@ def error500(e):
     timestamp = datetime.now().timestamp()
     data = {
         "timestamp": timestamp,
-        "message": "500 internal server error",
-        "description": str(e)
+        "status": int(e.code),
+        "error": str(e.name),
+        "trace": str(e.with_traceback),
+        "message": str(e.description)
     }
-    return jsonify(data), 500
+    return jsonify(data), int(e.code)
 
 @apli.route('/')
 def index():
