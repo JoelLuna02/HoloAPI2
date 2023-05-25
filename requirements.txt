@@ -4,10 +4,12 @@ blinker==1.6.2
 click==8.1.3
 Flask==2.3.2
 Flask-Cors==3.0.10
+Flask-JWT-Extended==4.4.4
 flask-marshmallow==0.15.0
 Flask-Migrate==4.0.4
 Flask-RESTful==0.3.10
 Flask-SQLAlchemy==3.0.3
+greenlet==2.0.2
 itsdangerous==2.1.2
 Jinja2==3.1.2
 Mako==1.2.4
@@ -17,6 +19,7 @@ marshmallow-sqlalchemy==0.29.0
 mysql-connector-python==8.0.33
 packaging==23.1
 protobuf==3.20.3
+PyJWT==2.7.0
 pytz==2023.3
 six==1.16.0
 SQLAlchemy==2.0.15

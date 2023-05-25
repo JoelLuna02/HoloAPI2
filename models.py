@@ -17,10 +17,11 @@ class VTuber(db.Model):
     birthday = db.Column(db.String(50))
     height = db.Column(db.Integer)
     youtube = db.Column(db.String(150), unique=True)
+    hashtags = db.relationship('HashTags', uselist=False, backref='vtuber', cascade='all, delete')
+    avatar = db.relationship('Avatar', uselist=False, backref='vtuber', cascade='all, delete')
+    illust = db.Column(db.String(50))
 
-    # The constructor
-
-    def __init__(self, fullname, kanji, gender, age:int, units, debut, fanname, zodiac, birthday, height:int , youtube):
+    def __init__(self, fullname, kanji, gender, age:int, units, debut, fanname, zodiac, birthday, height:int, youtube, illust):
         self.fullname = fullname
         self.kanji = kanji
         self.gender = gender
@@ -32,6 +33,41 @@ class VTuber(db.Model):
         self.birthday = birthday
         self.height = height
         self.youtube = youtube
+        self.illust = illust
 
     def __str__(self):
         return f'{self.__fullname}'
+
+
+class HashTags(db.Model):
+    __tablename__ = 'hashtags'
+    htid = db.Column(db.Integer, primary_key=True)
+    stream_tag = db.Column(db.String(70), unique=True)
+    fanart_tag = db.Column(db.String(70), unique=True)
+    vtuber_id = db.Column(db.Integer, db.ForeignKey('vtuber.id'))
+
+    def __init__(self, stream_tag, fanart_tag):
+        self.stream_tag = stream_tag
+        self.fanart_tag = fanart_tag
+    
+    def __str__(self):
+        return f"{self.stream_tag} {self.fanart_tag}"
+
+
+class Avatar(db.Model):
+    __tablename__ = 'avatares'
+    avid = db.Column(db.Integer, primary_key=True)
+    file = db.Column(db.String(150), unique=True)
+    source = db.Column(db.String(150), unique=True)
+    creator = db.Column(db.String(50))
+    app = db.Column(db.String(50))
+    vtuber_id = db.Column(db.Integer, db.ForeignKey('vtuber.id'))
+
+    def __init__(self, file, source, creator, app):
+        self.file = file
+        self.source = source
+        self.creator = creator
+        self.app = app
+
+    def __str__(self):
+        return f'{self.file}'
