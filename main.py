@@ -19,6 +19,8 @@ cors = CORS(apli)
 vtuber_schema = VTuberSchema()
 hashtags_schema = HashTagSchema()
 avatar_schema = AvatarSchema()
+alias_schema = AliasSchema(many=True)
+song_schema = SongsSchema(many=True)
 parser = reqparse.RequestParser()
 parser.add_argument('fullname', type=str, help="VTuber's fullname")
 
@@ -31,6 +33,8 @@ class ListVTubers(Resource):
         for vt, rep in zip(vtubers, response):
             rep['hashtags'] = hashtags_schema.dump(vt.hashtags)
             rep['avatar'] = avatar_schema.dump(vt.avatar)
+            rep['aliases'] = alias_schema.dump(vt.aliases)
+            rep['songs'] = song_schema.dump(vt.songs)
         return response, 200
 
 class GetVTuber(Resource):
@@ -41,11 +45,16 @@ class GetVTuber(Resource):
         response = vtuber_schema.dump(vtuber)
         response['hashtags'] = hashtags_schema.dump(vtuber.hashtags)
         response['avatar'] = avatar_schema.dump(vtuber.avatar)
+        response['aliases'] = alias_schema.dump(vtuber.aliases)
+        response['songs'] = song_schema.dump(vtuber.songs)
         return response, 200
 
 class CreateVTuber(Resource):
     def post(self):
         vtdict = request.get_json()
+        aliasdict = vtdict.pop('aliases', [])
+        songsdict = vtdict.pop('songs', [])
+
         vtuber = VTuber(
             fullname=vtdict["fullname"], kanji=vtdict["kanji"], gender=vtdict["gender"],
             age=int(vtdict["age"]), units=vtdict["units"], debut=vtdict["debut"],
@@ -67,6 +76,21 @@ class CreateVTuber(Resource):
         avatar.vtuber_id = vtuber.id
         db.session.add(hashtag)
         db.session.add(avatar)
+
+        for alias in aliasdict:
+            al = Aliases(alias["alias"])
+            al.vt_id = vtuber.id
+            vtuber.aliases.append(al)
+            db.session.add(al)
+        for song in songsdict:
+            sng = Songs(
+                song['name'], song["album"], song["releasedate"], 
+                song["compositor"], song["lyrics"], song["albumpt"]
+            )
+            sng.vtid = vtuber.id
+            vtuber.songs.append(sng)
+            db.session.add(sng)
+
         db.session.commit()
 
         response = {
@@ -76,6 +100,8 @@ class CreateVTuber(Resource):
         }
         response["vtuber"]["hashtags"] = hashtags_schema.dump(hashtag)
         response["vtuber"]["avatar"] = avatar_schema.dump(avatar)
+        response["vtuber"]["aliases"] = alias_schema.dump(aliasdict)
+        response["vtuber"]["songs"] = song_schema.dump(songsdict)
         return response, 201
 
 class DeleteVTuber(Resource):
@@ -86,6 +112,10 @@ class DeleteVTuber(Resource):
         if vtuber.hashtags and vtuber.avatar:
             db.session.delete(vtuber.hashtags)
             db.session.delete(vtuber.avatar)
+        for alias in vtuber.aliases:
+            db.session.delete(alias)
+        for song in vtuber.songs:
+            db.session.delte(song)
         db.session.delete(vtuber)
         db.session.commit()
         return {}, 204
@@ -93,6 +123,8 @@ class DeleteVTuber(Resource):
 class UpdateVTuber(Resource):
     def put(self, vtid:int):
         vtdict = request.get_json()
+        aliasdict = vtdict.pop('aliases', [])
+        songsdict = vtdict.pop('songs', [])
         vtuber = db.session.get(VTuber, vtid)
         if vtuber is None:
             raise NotFound("The VTuber does not exists.")
@@ -119,7 +151,7 @@ class UpdateVTuber(Resource):
                 newhash = HashTags(stream_tag=vthash.get('stream_tag'), fanart_tag=vthash.get('fanart_tag'))
                 vtuber.hashtags = newhash
 
-        if 'avatar' in vtdict:
+        if 'avatar' in vtdict: 
             vtavatar = vtdict["avatar"]
             if vtuber.avatar:
                 vtuber.avatar.file = vtavatar.get('file', vtuber.avatar.file)
@@ -132,6 +164,21 @@ class UpdateVTuber(Resource):
                     creator=vtavatar.get('creator'), app=vtavatar.get('app')
                 )
                 vtuber.avatar = newav
+        
+        existing_aliases = {alias.id: alias for alias in vtuber.aliases}
+        existing_songs = {songs.id: songs for songs in vtuber.songs}
+        for alias_data in aliasdict:
+            alias_id = alias_data.get("id")
+            alias = existing_aliases.get(alias_id)
+            if alias:
+                alias.alias = alias_data.get("alias", alias.alias)
+            else:
+                newalias = Aliases(alias=alias_data["alias"])
+                newalias.vtuber_id = vtuber.id
+        
+        for alias in vtuber.aliases:
+            if alias.id not in [alias_data.get("id") for alias_data in aliasdict]:
+                db.session.delete(alias)
 
         db.session.commit()     # Update the data
 
@@ -142,6 +189,7 @@ class UpdateVTuber(Resource):
         }
         response["newdata"]["hashtags"] = hashtags_schema.dump(vtuber.hashtags)
         response["newdata"]["avatar"] = avatar_schema.dump(vtuber.avatar)
+        response["newdata"]["aliases"] = alias_schema.dump(aliasdict)
         return response, 200
 
 api.add_resource(ListVTubers, "/v1/vtuber", endpoint='vtubers')
@@ -149,6 +197,8 @@ api.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>", endpoint='get-vtuber-id')
 api.add_resource(CreateVTuber, "/v1/vtuber/create", endpoint='create-vtuber')
 api.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>", endpoint='delete-vtuber')
 api.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>", endpoint='update-vtuber')
+
+# Flask common routes and routines
 
 @apli.errorhandler(HTTPException)
 def error500(e):

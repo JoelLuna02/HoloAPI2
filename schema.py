@@ -1,11 +1,13 @@
 from flask_marshmallow import Marshmallow
-from models import VTuber, HashTags, Avatar
+from models import *
 
 ma = Marshmallow()
 
 class VTuberSchema(ma.Schema):
     hashtags = ma.Nested('HashTagSchema')
     avatar = ma.Nested('AvatarSchema')
+    aliases = ma.Nested('AliasSchema', many=True)
+    songs = ma.Nested('SongsSchema', many=True)
 
     class Meta:
         model = VTuber
@@ -18,9 +20,22 @@ class VTuberSchema(ma.Schema):
 class HashTagSchema(ma.Schema):
     class Meta:
         model = HashTags
-        fields = ("htid", "stream_tag", "fanart_tag")
+        fields = ("stream_tag", "fanart_tag")
 
 class AvatarSchema(ma.Schema):
     class Meta:
         model = Avatar
-        fields = ("avid", "file", "source", "creator", "app")
+        fields = ("file", "source", "creator", "app")
+
+class AliasSchema(ma.Schema):
+    class Meta:
+        model = Aliases
+        fields = ('id', 'alias')
+
+class SongsSchema(ma.Schema):
+    class Meta:
+        model = Songs
+        fields = (
+            'id', 'name', 'album', 'releasedate', 
+            'compositor', 'lyrics', 'albumpt'
+        )

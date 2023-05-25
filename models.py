@@ -20,8 +20,10 @@ class VTuber(db.Model):
     hashtags = db.relationship('HashTags', uselist=False, backref='vtuber', cascade='all, delete')
     avatar = db.relationship('Avatar', uselist=False, backref='vtuber', cascade='all, delete')
     illust = db.Column(db.String(50))
+    aliases = db.relationship('Aliases', backref='vtuber', lazy=False, cascade='all, delete-orphan')
+    songs = db.relationship('Songs', backref='vtuber', lazy=False, cascade='all, delete-orphan')
 
-    def __init__(self, fullname, kanji, gender, age:int, units, debut, fanname, zodiac, birthday, height:int, youtube, illust):
+    def __init__(self, fullname, kanji, gender, age:int, units, debut, fanname, zodiac, birthday, height:int, youtube, illust, alias=[], song=[]):
         self.fullname = fullname
         self.kanji = kanji
         self.gender = gender
@@ -34,6 +36,8 @@ class VTuber(db.Model):
         self.height = height
         self.youtube = youtube
         self.illust = illust
+        self.aliases = alias
+        self.songs = song
 
     def __str__(self):
         return f'{self.__fullname}'
@@ -53,7 +57,6 @@ class HashTags(db.Model):
     def __str__(self):
         return f"{self.stream_tag} {self.fanart_tag}"
 
-
 class Avatar(db.Model):
     __tablename__ = 'avatares'
     avid = db.Column(db.Integer, primary_key=True)
@@ -71,3 +74,39 @@ class Avatar(db.Model):
 
     def __str__(self):
         return f'{self.file}'
+
+class Aliases(db.Model):
+    __tablename__ = 'aliases'
+    id = db.Column(db.Integer, primary_key=True)
+    alias = db.Column(db.String(50))
+    vt_id = db.Column(db.Integer, db.ForeignKey('vtuber.id'), nullable=False)
+
+    def __init__(self, alias):
+        self.alias = alias
+    
+    def __str__(self):
+        return f'{self.alias}'
+
+'''
+class Social(db.Model):
+    pass
+'''
+
+class Songs(db.Model):
+    __tablename__ = 'songs'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50))
+    album = db.Column(db.String(50))
+    releasedate = db.Column(db.Date)
+    compositor = db.Column(db.String(40))
+    lyrics = db.Column(db.String(40))
+    albumpt = db.Column(db.String(170))
+    vtid = db.Column(db.Integer, db.ForeignKey('vtuber.id'), nullable=False)
+
+    def __init__(self, name, album, releasedate, compositor, lyrics, albumpt):
+        self.name = name
+        self.album = album
+        self.releasedate = releasedate
+        self.compositor = compositor
+        self.lyrics = lyrics
+        self.albumpt = albumpt

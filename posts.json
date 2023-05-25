@@ -71,7 +71,7 @@
             "releasedate": "2022-09-17",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
         },
         {
             "name": "Excuse My Rudeness, But Could You Please RIP?♡",
@@ -79,7 +79,7 @@
             "releasedate": "2022-09-17",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
         },
         {
             "name": "DEAD BEATS",
@@ -87,7 +87,7 @@
             "releasedate": "2022-09-17",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
         },
         {
             "name": "Live Again",
@@ -95,7 +95,7 @@
             "releasedate": "2022-09-19",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "portrait": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
         }
     ]
 }
