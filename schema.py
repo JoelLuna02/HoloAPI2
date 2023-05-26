@@ -7,6 +7,7 @@ class VTuberSchema(ma.Schema):
     hashtags = ma.Nested('HashTagSchema')
     avatar = ma.Nested('AvatarSchema')
     aliases = ma.Nested('AliasSchema', many=True)
+    social = ma.Nested('SocialSchema', many=True)
     songs = ma.Nested('SongsSchema', many=True)
 
     class Meta:
@@ -39,3 +40,8 @@ class SongsSchema(ma.Schema):
             'id', 'name', 'album', 'releasedate', 
             'compositor', 'lyrics', 'albumpt'
         )
+
+class SocialSchema(ma.Schema):
+    class Meta:
+        model = Social
+        fields = ("id", "socialapp", "socialurl")

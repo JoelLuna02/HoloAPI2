@@ -1,7 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.dialects.mysql import JSON
 
-db = SQLAlchemy()
+db = SQLAlchemy()       # SQLAlchemy dialect
+
+''' *** ---------------------------------- *** 
+    ***  VTUBER'S MODEL AND RELATIONSHIPS  ***
+    *** ---------------------------------- ***
+'''
 
 class VTuber(db.Model):
     __tablename__ = 'vtuber'                          # The table name
@@ -21,9 +26,10 @@ class VTuber(db.Model):
     avatar = db.relationship('Avatar', uselist=False, backref='vtuber', cascade='all, delete')
     illust = db.Column(db.String(50))
     aliases = db.relationship('Aliases', backref='vtuber', lazy=False, cascade='all, delete-orphan')
+    social = db.relationship('Social', backref='vtuber', lazy=False, cascade='all, delete-orphan')
     songs = db.relationship('Songs', backref='vtuber', lazy=False, cascade='all, delete-orphan')
 
-    def __init__(self, fullname, kanji, gender, age:int, units, debut, fanname, zodiac, birthday, height:int, youtube, illust, alias=[], song=[]):
+    def __init__(self, fullname, kanji, gender, age:int, units, debut, fanname, zodiac, birthday, height:int, youtube, illust, alias=[], social=[], song=[]):
         self.fullname = fullname
         self.kanji = kanji
         self.gender = gender
@@ -37,11 +43,11 @@ class VTuber(db.Model):
         self.youtube = youtube
         self.illust = illust
         self.aliases = alias
+        self.social = social
         self.songs = song
 
     def __str__(self):
         return f'{self.__fullname}'
-
 
 class HashTags(db.Model):
     __tablename__ = 'hashtags'
@@ -87,10 +93,16 @@ class Aliases(db.Model):
     def __str__(self):
         return f'{self.alias}'
 
-'''
 class Social(db.Model):
-    pass
-'''
+    __tablename__ = 'social'
+    id = db.Column(db.Integer, primary_key=True)
+    socialapp = db.Column(db.String(50))
+    socialurl = db.Column(db.String(150), unique=True)
+    vtuber_id = db.Column(db.Integer, db.ForeignKey('vtuber.id'), nullable=False)
+
+    def __init__(self, socialapp, socialurl):
+        self.socialapp = socialapp
+        self.socialurl = socialurl
 
 class Songs(db.Model):
     __tablename__ = 'songs'
@@ -110,3 +122,9 @@ class Songs(db.Model):
         self.compositor = compositor
         self.lyrics = lyrics
         self.albumpt = albumpt
+
+
+''' *** --------------------------- ***
+    ***   USER MODEL AND METHODS    ***
+    *** --------------------------- ***
+'''
