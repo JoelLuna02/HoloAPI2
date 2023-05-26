@@ -37,7 +37,7 @@ class SongsSchema(ma.Schema):
     class Meta:
         model = Songs
         fields = (
-            'id', 'name', 'album', 'releasedate', 
+            'id', 'name', 'album', 'releasedate',
             'compositor', 'lyrics', 'albumpt'
         )
 
@@ -45,3 +45,10 @@ class SocialSchema(ma.Schema):
     class Meta:
         model = Social
         fields = ("id", "socialapp", "socialurl")
+
+class UserSchema(ma.Schema):
+    class Meta:
+        model = User
+        fields = (
+            'id', 'username', 'email', 'is_admin'
+        )

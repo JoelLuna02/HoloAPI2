@@ -3,6 +3,7 @@ from flask import Flask, request, jsonify
 from flask_restful import Api, Resource, reqparse
 from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException, NotFound
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token
 from flask_cors import CORS
 import config.default as conf
 from models import *
@@ -15,6 +16,7 @@ ma.init_app(apli)               # Marshmallow init
 api = Api(apli)                 # Restful init
 mi = Migrate(apli, db)          # Migrate init
 cors = CORS(apli)               # CORS method init
+jwt = JWTManager(apli)          # JSON Web Token method init
 
 vtuber_schema = VTuberSchema()
 hashtags_schema = HashTagSchema()
@@ -22,6 +24,7 @@ avatar_schema = AvatarSchema()
 alias_schema = AliasSchema(many=True)
 social_schema = SocialSchema(many=True)
 song_schema = SongsSchema(many=True)
+user_schema = UserSchema()
 parser = reqparse.RequestParser()
 parser.add_argument('fullname', type=str, help="VTuber's fullname")
 
@@ -167,7 +170,7 @@ class UpdateVTuber(Resource):
                 newhash = HashTags(stream_tag=vthash.get('stream_tag'), fanart_tag=vthash.get('fanart_tag'))
                 vtuber.hashtags = newhash
 
-        if 'avatar' in vtdict: 
+        if 'avatar' in vtdict:
             vtavatar = vtdict["avatar"]
             if vtuber.avatar:
                 vtuber.avatar.file = vtavatar.get('file', vtuber.avatar.file)
@@ -180,7 +183,7 @@ class UpdateVTuber(Resource):
                     creator=vtavatar.get('creator'), app=vtavatar.get('app')
                 )
                 vtuber.avatar = newav
-        
+
         existing_aliases = {alias.id: alias for alias in vtuber.aliases}
         existing_social = {social.id: social for social in vtuber.social}
         existing_songs = {songs.id: songs for songs in vtuber.songs}
@@ -233,7 +236,6 @@ class UpdateVTuber(Resource):
             for song in vtuber.songs:
                 if song.id not in [song_data.get("id") for song_data in songsdict]:
                     db.session.delete(song)
-        
 
         db.session.commit()     # Update the data
 
@@ -273,6 +275,31 @@ def error500(e):
 def index():
     return "hola mundo!"
 
+# JWT Extended errorhandlers
+
+@jwt.unauthorized_loader
+def unauthorized(err):
+    response = {
+        "message": "401 Unauthorized",
+        "description": "You must be logged in to access this resource"
+    }
+    return jsonify(response), 401
+
+@jwt.invalid_token_loader
+def invalid_token(err):
+    response = {
+        "message": "401 Unauthorized",
+        "description": "Invalid token. Please check and try again."
+    }
+    return jsonify(response), 401
+
+@jwt.expired_token_loader
+def expired_token(err):
+    response = {
+        "message": "401 Unauthorized",
+        "description": "The token has expired. please try again later"
+    }
+    return jsonify(response), 401
 
 if __name__ == '__main__':
     apli.run(debug=False)
