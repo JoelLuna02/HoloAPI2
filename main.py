@@ -1,9 +1,12 @@
-from datetime import datetime
-from flask import Flask, request, jsonify
+from io import BytesIO
+import mimetypes
+from flask import Flask, request, jsonify, send_file
 from flask_restful import Api, Resource, reqparse
 from flask_migrate import Migrate
-from werkzeug.exceptions import HTTPException, NotFound
-from flask_jwt_extended import JWTManager, jwt_required, create_access_token
+from werkzeug.exceptions import HTTPException, NotFound, Forbidden, Unauthorized, BadRequest
+from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
+from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 from flask_cors import CORS
 import config.default as conf
 from models import *
@@ -25,8 +28,7 @@ alias_schema = AliasSchema(many=True)
 social_schema = SocialSchema(many=True)
 song_schema = SongsSchema(many=True)
 user_schema = UserSchema()
-parser = reqparse.RequestParser()
-parser.add_argument('fullname', type=str, help="VTuber's fullname")
+fileschema = FileSchema()
 
 ''' *** ----------------------- ***
     ***   API RESTFul Routes    ***
@@ -59,12 +61,17 @@ class GetVTuber(Resource):
         return response, 200
 
 class CreateVTuber(Resource):
+    @jwt_required()
     def post(self):
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        
         vtdict = request.get_json()
         aliasdict = vtdict.pop('aliases', [])
         songsdict = vtdict.pop('songs', [])
         socialdict = vtdict.pop('social', [])
-
         vtuber = VTuber(
             fullname=vtdict["fullname"], kanji=vtdict["kanji"], gender=vtdict["gender"],
             age=int(vtdict["age"]), units=vtdict["units"], debut=vtdict["debut"],
@@ -121,8 +128,13 @@ class CreateVTuber(Resource):
         return response, 201
 
 class DeleteVTuber(Resource):
+    @jwt_required()
     def delete(self, vtid:int):
-        vtuber = vtuber = db.session.get(VTuber, vtid)
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        vtuber = db.session.get(VTuber, vtid)
         if vtuber is None:
             raise NotFound("The VTuber does not exists.")
         if vtuber.hashtags and vtuber.avatar:
@@ -139,11 +151,16 @@ class DeleteVTuber(Resource):
         return {}, 204
 
 class UpdateVTuber(Resource):
+    @jwt_required()
     def put(self, vtid:int):
         vtdict = request.get_json()
         aliasdict = vtdict.pop('aliases', [])
         songsdict = vtdict.pop('songs', [])
         socialdict = vtdict.pop('social', [])
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
         vtuber = db.session.get(VTuber, vtid)
         if vtuber is None:
             raise NotFound("The VTuber does not exists.")
@@ -257,19 +274,110 @@ api.add_resource(CreateVTuber, "/v1/vtuber/create", endpoint='create-vtuber')
 api.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>", endpoint='delete-vtuber')
 api.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>", endpoint='update-vtuber')
 
+''' *** -------------------------------- ***
+    ***   Register and login resources   ***
+    *** -------------------------------- ***
+'''
+
+class GetUsers(Resource):
+    @jwt_required()
+    def get(self):
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        users = User.query.all()
+        response = user_schema.dump(users, many=True)
+        return response, 201
+
+class Register(Resource):
+    def post(self):
+        data = request.get_json()
+        user = User(
+            firstname=data.get("firstname"), lastname=data.get("lastname"), birthday=data.get("birthday"),
+            username=data.get("username"), email=data.get("email"), password=data.get("password")
+        )
+        user.is_admin = data.get('is_admin', False)
+        db.session.add(user)
+        db.session.commit()
+        response = {
+            "crated_user": user_schema.dump(user),
+            "message": "Successfully registered user",
+            "status": "201 Created"
+        }
+        return response, 201
+
+class Login(Resource):
+    def post(self):
+        data = request.get_json()
+        username = data.get('username')
+        password = data.get('password')
+        user = User.query.filter_by(username=username).first()
+        if user and user.decrypt(password):
+            access_token = create_access_token(identity=user.id)
+            response = {
+                "logged_as": user_schema.dump(user),
+                "access_token": str(access_token)
+            }
+            return response, 200
+        else:
+            raise Unauthorized("Invalid access or Bad credentials, please check and try again")
+
+api.add_resource(GetUsers, '/v1/auth/users')
+api.add_resource(Register, '/v1/auth/signup')
+api.add_resource(Login, '/v1/auth/login')
+
+
+class ListStoredFiles(Resource):
+    def get(self):
+        Files = File.query.all()
+        response = fileschema.dump(Files, many=True)
+        return response, 200
+    
+class OpenFile(Resource):
+    def get(self, filename:str):
+        if filename is None:
+            raise BadRequest("The filename is missing")
+        archive = File.query.filter_by(filename=filename).first()
+        if not archive:
+            raise NotFound("File not found")
+        mime = mimetypes.guess_type(archive.filename)
+        return send_file(BytesIO(archive.filebytes), mimetype=mime[0], as_attachment=False, download_name=archive.filename)
+        
+
+class UploadFile(Resource):
+    def post(self):
+        parser = reqparse.RequestParser()
+        parser.add_argument('file', type=FileStorage, location='files', required=True)
+        args = parser.parse_args()
+
+        archive = args["file"]
+        filename = secure_filename(archive.filename)
+        archive_bytes = archive.read()
+        if len(archive_bytes) >= 10485760:
+            raise BadRequest("The file is too long to storage in the database. The maximum file size is 10 MB")
+        
+        newfile = File(filename=filename, filebytes=archive_bytes)
+        newfile.integrity = newfile.set_integrity()
+        db.session.add(newfile)
+        db.session.commit()
+        response = {"message": "Successfully storaged file in the database"}
+        return response, 201
+
+api.add_resource(UploadFile, '/v1/upload')
+api.add_resource(ListStoredFiles, '/v1/assets/listfiles')
+api.add_resource(OpenFile, '/v1/assets/<string:filename>')
+
 # Flask common routes and routines
 
 @apli.errorhandler(HTTPException)
 def error500(e):
-    timestamp = datetime.now().timestamp()
-    data = {
-        "timestamp": timestamp,
-        "status": int(e.code),
-        "error": str(e.name),
-        "trace": str(e.with_traceback),
-        "message": str(e.description)
+    response = {
+        "error": e.name,
+        "code": e.code,
+        "message": e.description
     }
-    return jsonify(data), int(e.code)
+    return response, e.code
 
 @apli.route('/')
 def index():
@@ -280,26 +388,39 @@ def index():
 @jwt.unauthorized_loader
 def unauthorized(err):
     response = {
-        "message": "401 Unauthorized",
-        "description": "You must be logged in to access this resource"
+        "code": 401,
+        "error": "Unauthorized",
+        "message": "You must be logged in to access this resource"
     }
     return jsonify(response), 401
 
 @jwt.invalid_token_loader
 def invalid_token(err):
     response = {
-        "message": "401 Unauthorized",
-        "description": "Invalid token. Please check and try again."
+        "code": 401,
+        "error": "Unauthorized",
+        "message": "Invalid token. Please check and try again."
     }
     return jsonify(response), 401
 
 @jwt.expired_token_loader
 def expired_token(err):
     response = {
-        "message": "401 Unauthorized",
-        "description": "The token has expired. please try again later"
+        "code": 401,
+        "error": "Unauthorized",
+        "message": "The token has expired. Please try again later"
     }
     return jsonify(response), 401
+
+@jwt.needs_fresh_token_loader
+def needsfresh(err):
+    response = {
+        "code": 401,
+        "error": "Unauthorized",
+        "message": "Invalid signature. Please try again later"
+    }
+    return jsonify(response), 401
+
 
 if __name__ == '__main__':
     apli.run(debug=False)

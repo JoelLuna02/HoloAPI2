@@ -52,3 +52,9 @@ class UserSchema(ma.Schema):
         fields = (
             'id', 'username', 'email', 'is_admin'
         )
+
+
+class FileSchema(ma.Schema):
+    class Meta:
+        model = File
+        fields = ("id", "filename", "integrity")

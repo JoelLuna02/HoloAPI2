@@ -1,5 +1,6 @@
 import bcrypt
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import CheckConstraint
 from sqlalchemy.dialects.mysql import JSON
 
 db = SQLAlchemy()       # SQLAlchemy dialect
@@ -124,7 +125,6 @@ class Songs(db.Model):
         self.lyrics = lyrics
         self.albumpt = albumpt
 
-
 ''' *** --------------------------- ***
     ***   USER MODEL AND METHODS    ***
     *** --------------------------- ***
@@ -136,23 +136,45 @@ class User(db.Model):
     firstname = db.Column(db.String(30), nullable=False)
     lastname = db.Column(db.String(30), nullable=False)
     birthday = db.Column(db.Date, nullable=False)
-    phone = db.Column(db.BigInteger, nullable=False)
     username = db.Column(db.String(50), unique=True, nullable=False)
     email = db.Column(db.String(80), unique=True, nullable=False)
-    password = db.Column(db.String(50), nullable=False)
+    password = db.Column(db.String(100), nullable=False)
     is_admin = db.Column(db.Boolean, default=False)
 
-    def __init__(self, firstname, lastname, birthday, phone:complex, username, email, password, is_admin=False):
+    def __init__(self, firstname, lastname, birthday, username, email, password, is_admin=False):
         self.firstname = firstname
         self.lastname = lastname
         self.birthday = birthday
-        self.phone = phone
         self.username = username
         self.email = email
         self.password = self.encrypt(password)
+        self.is_admin = is_admin
 
     def encrypt(self, password:str):
         return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
     def decrypt(self, password:str):
         return bcrypt.checkpw(password.encode('utf-8'), self.password.encode('utf-8'))
+
+''' *** ------------------ ***
+    ***   OTHER ENTITIES   ***
+    *** ------------------ ***
+'''
+
+class File(db.Model):
+    __tablename__ = 'files'
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(100), unique=True, nullable=False)
+    integrity = db.Column(db.String(150), unique=True, nullable=False)
+    filebytes = db.Column(db.LargeBinary(length=10485760), nullable=False)
+    
+    __table_args__ = (
+        CheckConstraint('LENGTH(filebytes) <= 10485760', name='check_bytes_length'),
+    )
+
+    def __init__(self, filename, filebytes):
+        self.filename = filename
+        self.filebytes = filebytes
+    
+    def set_integrity(self):
+        return bcrypt.hashpw(self.filebytes, bcrypt.gensalt()).decode('utf-8')

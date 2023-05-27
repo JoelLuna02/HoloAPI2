@@ -2,5 +2,7 @@
 SQLALCHEMY_DATABASE_URI = 'mysql+mysqlconnector://root:root2022@localhost:3306/holoapi_test'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SHOW_SQLALCHEMY_LOG_MESSAGES = False
+JWT_SECRET_KEY = 'HoloAPI_213ijsdzsdf081#%$)(=ADSA_secret'
+PROPAGATE_EXCEPTIONS = True
 
 ERROR_404_HELP = False
