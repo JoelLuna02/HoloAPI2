@@ -14,7 +14,7 @@
     "height": 167,
     "youtube": "https://www.youtube.com/@MoriCalliope",
     "avatar": {
-        "file": "http://localhost:8080/v1/assets/imgfile/calliope.jpg",
+        "file": "http://localhost:5000/v1/assets/calliope.jpg",
         "source": "https://twitter.com/Nekomeshi17Nez/status/1580269421204893696",
         "creator": "@Nekomeshi17Nez (NEZん)",
         "app": "Twitter"
@@ -71,7 +71,7 @@
             "releasedate": "2022-09-17",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
         },
         {
             "name": "Excuse My Rudeness, But Could You Please RIP?♡",
@@ -79,7 +79,7 @@
             "releasedate": "2022-09-17",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
         },
         {
             "name": "DEAD BEATS",
@@ -87,7 +87,7 @@
             "releasedate": "2022-09-17",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
         },
         {
             "name": "Live Again",
@@ -95,7 +95,7 @@
             "releasedate": "2022-09-19",
             "compositor": "kokorobeats a.k.a K's/Coro",
             "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:8080/v1/assets/imgfile/deadbeats.png"
+            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
         }
     ]
 }

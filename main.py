@@ -1,5 +1,6 @@
 from io import BytesIO
 import mimetypes
+
 from flask import Flask, request, jsonify, send_file
 from flask_restful import Api, Resource, reqparse
 from flask_migrate import Migrate
@@ -9,6 +10,7 @@ from werkzeug.utils import secure_filename
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token, get_jwt_identity
 from flask_cors import CORS
 import config.default as conf
+from apihelp import apih
 from models import *
 from schema import *
 
@@ -364,9 +366,21 @@ class UploadFile(Resource):
         response = {"message": "Successfully storaged file in the database"}
         return response, 201
 
+class DeleteFile(Resource):
+    def delete(self, id:int):
+        if id is None:
+            raise BadRequest("You must define a file id to delete.")
+        file = db.session.get(File, id)
+        if file is None:
+            raise NotFound("File not found")
+        db.session.delete(file)
+        db.session.commit()
+        return {}, 204
+
 api.add_resource(UploadFile, '/v1/upload')
 api.add_resource(ListStoredFiles, '/v1/assets/listfiles')
 api.add_resource(OpenFile, '/v1/assets/<string:filename>')
+api.add_resource(DeleteFile, '/v1/deletefile/<int:id>')
 
 # Flask common routes and routines
 
@@ -382,6 +396,13 @@ def error500(e):
 @apli.route('/')
 def index():
     return "hola mundo!"
+
+@apli.route("/v1")
+def ahelp():
+    accept = request.headers.get('Accept')
+    if accept and 'text/html' in accept:
+        return '<h1>Helper</h1>'
+    return apih, 200
 
 # JWT Extended errorhandlers
 
