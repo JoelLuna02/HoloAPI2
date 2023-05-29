@@ -1,7 +1,10 @@
+from flask_apispec.extension import FlaskApiSpec
+from flask_apispec import marshal_with, doc, use_kwargs
+from flask_apispec.views import MethodResource
 from io import BytesIO
 import mimetypes
 
-from flask import Flask, request, jsonify, send_file
+from flask import Flask, request, jsonify, send_file, render_template
 from flask_restful import Api, Resource, reqparse
 from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException, NotFound, Forbidden, Unauthorized, BadRequest
@@ -14,6 +17,7 @@ from apihelp import apih
 from models import *
 from schema import *
 
+
 apli = Flask(__name__)          # Flask App
 apli.config.from_object(conf)   # Flask Config
 db.init_app(apli)               # SQLAlchemy init
@@ -22,6 +26,7 @@ api = Api(apli)                 # Restful init
 mi = Migrate(apli, db)          # Migrate init
 cors = CORS(apli)               # CORS method init
 jwt = JWTManager(apli)          # JSON Web Token method init
+docs = FlaskApiSpec(apli)
 
 vtuber_schema = VTuberSchema()
 hashtags_schema = HashTagSchema()
@@ -32,12 +37,14 @@ song_schema = SongsSchema(many=True)
 user_schema = UserSchema()
 fileschema = FileSchema()
 
+
 ''' *** ----------------------- ***
     ***   API RESTFul Routes    ***
     *** ----------------------- ***
 '''
-
-class ListVTubers(Resource):
+class ListVTubers(Resource, MethodResource):
+    @doc(description="Get a VTuber's full list.", tags=['vtuber'])
+    @marshal_with(VTuberSchema(many=True))
     def get(self):
         vtubers = VTuber.query.all()
         response = vtuber_schema.dump(vtubers, many=True)
@@ -49,7 +56,9 @@ class ListVTubers(Resource):
             rep['songs'] = song_schema.dump(vt.songs)
         return response, 200
 
-class GetVTuber(Resource):
+class GetVTuber(Resource, MethodResource):
+    @doc(description='Get a VTuber by ID.', tags=['vtuber'])
+    @marshal_with(VTuberSchema)
     def get(self, vtid:int):
         vtuber = db.session.get(VTuber, vtid)
         if vtuber is None:
@@ -62,7 +71,10 @@ class GetVTuber(Resource):
         response['songs'] = song_schema.dump(vtuber.songs)
         return response, 200
 
-class CreateVTuber(Resource):
+class CreateVTuber(Resource, MethodResource):
+    @doc(description='Creates a new Vtuber.', tags=['vtuber'])
+    @marshal_with(VTuberSchema)
+    @use_kwargs(VTuberSchema, location=('json'))
     @jwt_required()
     def post(self):
         userid = get_jwt_identity()
@@ -129,7 +141,9 @@ class CreateVTuber(Resource):
         response["vtuber"]["songs"] = song_schema.dump(songsdict)
         return response, 201
 
-class DeleteVTuber(Resource):
+class DeleteVTuber(Resource, MethodResource):
+    @doc(description='Delete a VTuber from the database by ID.', tags=['vtuber'])
+    @marshal_with(VTuberSchema)
     @jwt_required()
     def delete(self, vtid:int):
         userid = get_jwt_identity()
@@ -152,7 +166,10 @@ class DeleteVTuber(Resource):
         db.session.commit()
         return {}, 204
 
-class UpdateVTuber(Resource):
+class UpdateVTuber(Resource, MethodResource):
+    @doc(description="Update a VTuber's information by id", tags=['vtuber'])
+    @marshal_with(VTuberSchema)
+    @use_kwargs(VTuberSchema, location=('json'))
     @jwt_required()
     def put(self, vtid:int):
         vtdict = request.get_json()
@@ -270,11 +287,16 @@ class UpdateVTuber(Resource):
         response["newdata"]["songs"] = song_schema.dump(vtuber.songs)
         return response, 200
 
-api.add_resource(ListVTubers, "/v1/vtuber", endpoint='vtubers')
-api.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>", endpoint='get-vtuber-id')
-api.add_resource(CreateVTuber, "/v1/vtuber/create", endpoint='create-vtuber')
-api.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>", endpoint='delete-vtuber')
-api.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>", endpoint='update-vtuber')
+api.add_resource(ListVTubers, "/v1/vtuber")
+api.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>")
+api.add_resource(CreateVTuber, "/v1/vtuber/create")
+api.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>")
+api.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>")
+docs.register(GetVTuber)
+docs.register(ListVTubers)
+docs.register(CreateVTuber)
+docs.register(DeleteVTuber)
+docs.register(UpdateVTuber)
 
 ''' *** -------------------------------- ***
     ***   Register and login resources   ***
@@ -395,7 +417,9 @@ def error500(e):
 
 @apli.route('/')
 def index():
-    return "hola mundo!"
+    data = ListVTubers().get()
+    formatted_json = vtuber_schema.dumps(data, indent=5)
+    return render_template("index.html", formato=formatted_json), 200
 
 @apli.route("/v1")
 def ahelp():
@@ -441,7 +465,6 @@ def needsfresh(err):
         "message": "Invalid signature. Please try again later"
     }
     return jsonify(response), 401
-
 
 if __name__ == '__main__':
     apli.run(debug=False)
