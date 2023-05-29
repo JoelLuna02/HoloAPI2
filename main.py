@@ -1,6 +1,7 @@
 from flask_apispec.extension import FlaskApiSpec
 from flask_bootstrap import Bootstrap5
 from flask import Flask, request, render_template
+from apispec import APISpec
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -29,9 +30,11 @@ cors = CORS(apli)               # CORS method init
 jwt = JWTManager(apli)          # JSON Web Token method init
 docs = FlaskApiSpec(apli)
 jwtProviders(jwt)
+flask_exceptions(apli)
 
 docs.register(ListVTubers)
 docs.register(GetVTuber)
+docs.register(FindVTuber)
 docs.register(CreateVTuber)
 docs.register(DeleteVTuber)
 docs.register(UpdateVTuber)

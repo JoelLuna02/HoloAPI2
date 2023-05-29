@@ -10,3 +10,12 @@ def flask_exceptions(app: Flask):
             "message": e.description
         }
         return response, e.code
+    
+    @app.errorhandler(Exception)
+    def exceptio(e):
+        response = {
+            "error": "Internal Service Error",
+            "code": 500,
+            "message": str(e)
+        }
+        return response, 500

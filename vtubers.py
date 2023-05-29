@@ -4,6 +4,8 @@ from flask_restful import Api, Resource
 from flask_jwt_extended import get_jwt_identity, jwt_required
 from flask_apispec import doc, marshal_with, use_kwargs
 from flask_apispec.views import MethodResource
+from sqlalchemy.orm.exc import NoResultFound
+from marshmallow import fields
 from models import Avatar, Aliases, VTuber, Songs, Social
 from schema import *
 
@@ -13,6 +15,12 @@ avatar_schema = AvatarSchema()
 alias_schema = AliasSchema(many=True)
 social_schema = SocialSchema(many=True)
 song_schema = SongsSchema(many=True)
+
+createvtuber_help = '''
+THIS RESOURCE IS PROTECTED, SO YOU CANNOT GET ACCESS TO USE.
+
+This method creates a new VTuber and stores in the database. if already exists a vtuber by fullname, fanname, youtube url, etc., the program returns a 500 error.
+'''
 
 vtapi = Api()
 
@@ -31,8 +39,8 @@ class ListVTubers(Resource, MethodResource):
         return response, 200
 
 class GetVTuber(Resource, MethodResource):
-    @doc(description='Get a VTuber by ID.', tags=['VTuber Resource'])
-    @marshal_with(VTuberSchema)
+    @doc(description='Get a VTuber by ID.', tags=['VTuber Resource'], params={'vtid': {'description': 'The VTuber id, required to find by id'}})
+    @marshal_with(VTuberSchema, description='This method returns a vtuber with her/his information by id. If not exists, returns a 404 error.', code=200)
     def get(self, vtid:int):
         vtuber = db.session.get(VTuber, vtid)
         if vtuber is None:
@@ -45,9 +53,30 @@ class GetVTuber(Resource, MethodResource):
         response['songs'] = song_schema.dump(vtuber.songs)
         return response, 200
 
+class FindVTuber(Resource, MethodResource):
+    @doc(description='Find a VTuber.', tags=['VTuber Resource'])
+    #@use_kwargs({'fullname': fields.Str(required=False), 'fanname': fields.Str(required=False), 'youtube': fields.Str(required=False)})
+    @marshal_with(VTuberSchema, description='This method find and return a vtuber with her/his information, if it exists', code=200)
+    def get(self):
+        params = request.args.to_dict()
+        try:
+            vtuber = VTuber.query.filter_by(**params).one()
+            if vtuber is None:
+                raise NotFound("The VTuber does not exists.")
+            response = vtuber_schema.dump(vtuber)
+            response['hashtags'] = hashtags_schema.dump(vtuber.hashtags)
+            response['avatar'] = avatar_schema.dump(vtuber.avatar)
+            response['aliases'] = alias_schema.dump(vtuber.aliases)
+            response["social"] = social_schema.dump(vtuber.social)
+            response['songs'] = song_schema.dump(vtuber.songs)
+            return response, 200
+        except NoResultFound as noresult:
+                raise NotFound(str(noresult))
+
+
 class CreateVTuber(Resource, MethodResource):
-    @doc(description='Creates a new Vtuber.', tags=['VTuber Information edition'])
-    @marshal_with(VTuberSchema)
+    @doc(description='Create a new Vtuber.', tags=['VTuber Information edition'])
+    @marshal_with(VTuberSchema, description=createvtuber_help, code=201)
     @use_kwargs(VTuberSchema, location=('json'))
     @jwt_required()
     def post(self):
@@ -55,7 +84,6 @@ class CreateVTuber(Resource, MethodResource):
         user = db.session.get(User, userid)
         if user and not user.is_admin:
             raise Forbidden("You need administrative privileges to access this resource")
-        
         vtdict = request.get_json()
         aliasdict = vtdict.pop('aliases', [])
         songsdict = vtdict.pop('songs', [])
@@ -263,6 +291,7 @@ class UpdateVTuber(Resource, MethodResource):
 
 vtapi.add_resource(ListVTubers, "/v1/vtuber")
 vtapi.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>")
+vtapi.add_resource(FindVTuber, '/v1/vtuber/find')
 vtapi.add_resource(CreateVTuber, "/v1/vtuber/create")
 vtapi.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>")
 vtapi.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>")
