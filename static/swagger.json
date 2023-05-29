@@ -1,1 +1,164 @@
-{"definitions":{"VTuber":{"properties":{"age":{},"birthday":{},"debut":{},"fanname":{},"fullname":{},"gender":{},"height":{},"id":{},"illust":{},"kanji":{},"units":{},"youtube":{},"zodiac":{}},"type":"object"}},"info":{"title":"HoloAPI Swagger Documentation","version":"1.0.0"},"paths":{"/v1/vtuber":{"get":{"description":"Get a VTuber's full list.","parameters":[],"responses":{"default":{"description":"This resource gets a full VTuber list stored in the database","schema":{"items":{"$ref":"#/definitions/VTuber"},"type":"array"}}},"tags":["VTuber resources"]}},"/v1/vtuber/create":{"post":{"description":"Creates a new Vtuber.","parameters":[{"in":"body","name":"body","required":false,"schema":{"$ref":"#/definitions/VTuber"}}],"responses":{"default":{"description":"","schema":{"$ref":"#/definitions/VTuber"}}},"tags":["vtuber"]}},"/v1/vtuber/delete/{vtid}":{"delete":{"description":"Delete a VTuber from the database by ID.","parameters":[{"format":"int32","in":"path","name":"vtid","required":true,"type":"integer"}],"responses":{"default":{"description":"","schema":{"$ref":"#/definitions/VTuber"}}},"tags":["vtuber"]}},"/v1/vtuber/update/{vtid}":{"put":{"description":"Update a VTuber's information by id","parameters":[{"in":"body","name":"body","required":false,"schema":{"$ref":"#/definitions/VTuber"}},{"format":"int32","in":"path","name":"vtid","required":true,"type":"integer"}],"responses":{"default":{"description":"","schema":{"$ref":"#/definitions/VTuber"}}},"tags":["vtuber"]}},"/v1/vtuber/{vtid}":{"get":{"description":"Get a VTuber by ID.","parameters":[{"format":"int32","in":"path","name":"vtid","required":true,"type":"integer"}],"responses":{"default":{"description":"","schema":{"$ref":"#/definitions/VTuber"}}},"tags":["vtuber"]}}},"swagger":"2.0"}
+{
+    "definitions": {
+        "VTuber": {
+            "properties": {
+                "age": {},
+                "birthday": {},
+                "debut": {},
+                "fanname": {},
+                "fullname": {},
+                "gender": {},
+                "height": {},
+                "id": {},
+                "illust": {},
+                "kanji": {},
+                "units": {},
+                "youtube": {},
+                "zodiac": {}
+            },
+            "type": "object"
+        }
+    },
+    "info": {
+        "title": "HoloAPI Documentation v1",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "version": "v1",
+        "contact": {},
+        "licence": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licence/LICENCE-2.0"
+        }
+    },
+    "paths": {
+        "/v1/vtuber": {
+            "get": {
+                "description": "Get a VTuber's full list.",
+                "parameters": [],
+                "responses": {
+                    "default": {
+                        "description": "This resource get's a full vtuber list from the dataabase",
+                        "schema": {
+                            "items": {
+                                "$ref": "#/definitions/VTuber"
+                            },
+                            "type": "array"
+                        }
+                    }
+                },
+                "tags": [
+                    "VTuber Resource"
+                ]
+            }
+        },
+        "/v1/vtuber/create": {
+            "post": {
+                "description": "Creates a new Vtuber.",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/VTuber"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/VTuber"
+                        }
+                    }
+                },
+                "tags": [
+                    "vtuber"
+                ]
+            }
+        },
+        "/v1/vtuber/delete/{vtid}": {
+            "delete": {
+                "description": "Delete a VTuber from the database by ID.",
+                "parameters": [
+                    {
+                        "format": "int32",
+                        "in": "path",
+                        "name": "vtid",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/VTuber"
+                        }
+                    }
+                },
+                "tags": [
+                    "vtuber"
+                ]
+            }
+        },
+        "/v1/vtuber/update/{vtid}": {
+            "put": {
+                "description": "Update a VTuber's information by id",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "required": false,
+                        "schema": {
+                            "$ref": "#/definitions/VTuber"
+                        }
+                    },
+                    {
+                        "format": "int32",
+                        "in": "path",
+                        "name": "vtid",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/VTuber"
+                        }
+                    }
+                },
+                "tags": [
+                    "vtuber"
+                ]
+            }
+        },
+        "/v1/vtuber/{vtid}": {
+            "get": {
+                "description": "Get a VTuber by ID.",
+                "parameters": [
+                    {
+                        "format": "int32",
+                        "in": "path",
+                        "name": "VTuber ID",
+                        "required": true,
+                        "type": "integer"
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "This function get's a vtuber with her information by id.",
+                        "schema": {
+                            "$ref": "#/definitions/VTuber"
+                        }
+                    }
+                },
+                "tags": [
+                    "VTuber Resource"
+                ]
+            }
+        }
+    },
+    "swagger": "2.0"
+}
