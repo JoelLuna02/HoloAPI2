@@ -1,10 +1,13 @@
+from apispec import APISpec
+from apispec_webframeworks.flask import FlaskPlugin
+from apispec.ext.marshmallow import MarshmallowPlugin
 from flask_apispec.extension import FlaskApiSpec
 from flask_apispec import marshal_with, doc, use_kwargs
 from flask_apispec.views import MethodResource
 from io import BytesIO
 import mimetypes
 
-from flask import Flask, request, jsonify, send_file, render_template
+from flask import Flask, request, jsonify, send_file, render_template, send_from_directory
 from flask_restful import Api, Resource, reqparse
 from flask_migrate import Migrate
 from werkzeug.exceptions import HTTPException, NotFound, Forbidden, Unauthorized, BadRequest
@@ -27,6 +30,12 @@ mi = Migrate(apli, db)          # Migrate init
 cors = CORS(apli)               # CORS method init
 jwt = JWTManager(apli)          # JSON Web Token method init
 docs = FlaskApiSpec(apli)
+spec = APISpec(
+    title='HoloAPI Swagger Documentation',
+    version='1.0.0',
+    openapi_version='3.0.3',
+    plugins=[FlaskPlugin(), MarshmallowPlugin()]
+)
 
 vtuber_schema = VTuberSchema()
 hashtags_schema = HashTagSchema()
@@ -43,7 +52,7 @@ fileschema = FileSchema()
     *** ----------------------- ***
 '''
 class ListVTubers(Resource, MethodResource):
-    @doc(description="Get a VTuber's full list.", tags=['vtuber'])
+    @doc(description="Get a VTuber's full list.", tags=['VTuber Resource'])
     @marshal_with(VTuberSchema(many=True))
     def get(self):
         vtubers = VTuber.query.all()
@@ -57,7 +66,7 @@ class ListVTubers(Resource, MethodResource):
         return response, 200
 
 class GetVTuber(Resource, MethodResource):
-    @doc(description='Get a VTuber by ID.', tags=['vtuber'])
+    @doc(description='Get a VTuber by ID.', tags=['VTuber Resource'])
     @marshal_with(VTuberSchema)
     def get(self, vtid:int):
         vtuber = db.session.get(VTuber, vtid)
@@ -428,6 +437,16 @@ def ahelp():
         return '<h1>Helper</h1>'
     return apih, 200
 
+@apli.route("/v1/swagger.json")
+def specdocs():
+    return send_from_directory(apli.static_folder, 'swagger.json')
+
+@apli.route("/docs")
+def docs():
+    return render_template("index.html")
+
+
+
 # JWT Extended errorhandlers
 
 @jwt.unauthorized_loader
@@ -467,4 +486,4 @@ def needsfresh(err):
     return jsonify(response), 401
 
 if __name__ == '__main__':
-    apli.run(debug=False)
+    apli.run(debug=False, static_folder='static')
