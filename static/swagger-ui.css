@@ -11078,7 +11078,8 @@
     position: fixed;
     overflow: hidden;
     top: 0;
-    padding: 10px 0
+    padding: 10px 0;
+    z-index: 99;
 }
 
 .swagger-ui .topbar .topbar-wrapper,
@@ -11224,6 +11225,7 @@
     font-family: 'Outfit', sans-serif;
     padding-top: 3rem;
     font-size: 36px;
+    font-weight: bold;
     margin: 0
 }
 

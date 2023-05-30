@@ -13,12 +13,102 @@
     <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='index.css')}}" />
     <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon-32x32.png')}}" sizes="32x32" />
     <link rel="icon" type="image/png" href="{{url_for('static', filename='favicon-16x16.png')}}" sizes="16x16" />
+    {{ bootstrap.load_css() }}
   </head>
 
   <body>
+    <style>
+      body {
+        font-family: 'Outfit', sans-serif;
+        background-color: #f1f2f3;
+        margin: 0;
+        height: 100%;
+      }
+      h1 {
+        color: #3b4151;
+      }
+      .grayinv {
+        filter: invert(100%) grayscale(100%)
+      }
+    </style>
+    <div class="container-xxl pt-5">
+      <div style="padding-top: 1rem;"></div>
+      <div class="alert alert-primary" role="alert">
+        <h3 class="fw-bold">Dear users and visitors,</h3>
+
+        <p>We are pleased to inform you that we are working hard to complete the documentation. However, we would like to remind you that we are still in the development and refinement stage of our platform.<p>
+
+        As a result, some parts of the current template HTML may have small bugs or occasional glitches. We want to assure you that we are doing all we can to resolve these issues as soon as possible and provide you with a smooth and hassle-free experience. <br/>
+
+        We value your patience and understanding as we continue to work to provide you with a robust and reliable documentation platform. Your satisfaction is our top priority, and we are committed to providing you with exceptional service.<br/>
+
+        If you encounter any issues or want to share your feedback regarding the documentation page in development, feel free to post your issues via the github site. We appreciate any input or suggestion you can give us, as it will help us further improve the quality of our service. <br>
+      </div>
+    </div>
     <div id="swagger-ui"></div>
+
+    <div class="container">
+      <h1 class="fw-bold">About Swagger UI</h1><hr>
+      <p>
+        Swagger UI is an open source tool used to document and visualize APIs (Application Programming Interfaces). It provides an interactive graphical interface that allows developers to efficiently explore and test the endpoints of an API.
+      </p>
+      <p>
+        Swagger UI is based on the OpenAPI standard (formerly known as Swagger), which is one of the following for accurately describing and documenting APIs. With Swagger UI, developers can automatically generate API documentation from their OpenAPI and present it in an easy-to-navigate format.
+      </p>
+      <p>
+        The Swagger UI displays the different API endpoints, required and optional parameters, expected data types, and responses that can be returned. It also provides the ability to send API requests directly from the interface and view the responses in real time.
+      </p>
+      <p>
+        One of the advantages of Swagger UI is that it facilitates collaboration between development teams and API users. Developers can share documentation obtained by Swagger UI with other team members or interested third parties, making the API easier to understand and use.
+      </p>
+      <h1 class="fw-bold">About OpenAPI Specification</h1><hr>
+      <p>
+        The OpenAPI Specification (OAS) defines a standard, language-agnostic interface to HTTP APIs which allows both humans and computers to discover and understand the capabilities of the service without access to source code, documentation, or through network traffic inspection. When properly defined, a consumer can understand and interact with the remote service with a minimal amount of implementation logic.
+      </p>
+      <p>
+        An OpenAPI definition can then be used by documentation generation tools to display the API, code generation tools to generate servers and clients in various programming languages, testing tools, and many other use cases.
+      </p>
+      <a href="https://swagger.io/specification/" class="m-5">More info in this link</a>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+      <path fill="#3f3f3f" fill-opacity="1" d="M0,32L40,53.3C80,75,160,117,240,160C320,203,400,245,480,245.3C560,245,640,203,720,181.3C800,160,880,160,960,181.3C1040,203,1120,245,1200,250.7C1280,256,1360,224,1400,208L1440,192L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z"></path>
+    </svg>
+    <footer class="text-center text-white" style="background-color: #3f3f3f">
+      <div class="container p-4">
+        <section class="mb-4">
+          <p>
+           Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
+           distinctio earum repellat quaerat voluptatibus placeat nam,
+           commodi optio pariatur est quia magnam eum harum corrupti dicta,
+           aliquam sequi voluptate quas.
+         </p>
+         <div class="row">
+           <div class="col-6">
+             <a class="text-white nav-item" href="">
+               BackEnd deployed in:</br>
+               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Netlify_logo_%282%29.svg/1200px-Netlify_logo_%282%29.svg.png" width="150px" class="grayinv">
+             </a>
+           </div>
+           <div class="col-6">
+             <a class="text-white nav-item" href="">
+               Developed in:</br>
+               <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Flask_logo.svg/1280px-Flask_logo.svg.png" width="150px" class="grayinv">
+             </a>
+           </div>
+         </div>
+        </section>
+
+      </div>
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        <div class="row">
+          <div class="col-6">© 2023 Copyright: HoloAPI - Created by Hector Joel Luna</div>
+          <div class="col-6">Hololive and all Characters, and names are trademarks of Cover Corp.</div>
+        </div>
+      </div>
+    </footer>
     <script src="{{url_for('static', filename='swagger-ui-bundle.js')}}" charset="UTF-8"></script>
     <script src="{{url_for('static', filename='swagger-ui-standalone-preset.js')}}" charset="UTF-8"></script>
     <script src="{{url_for('static', filename='swagger-initializer.js')}}" charset="UTF-8"></script>
+    {{ bootstrap.load_js() }}
   </body>
 </html>
