@@ -1,3 +1,4 @@
+import random
 from flask import request
 from werkzeug.exceptions import NotFound, Forbidden
 from flask_restful import Api, Resource
@@ -16,6 +17,7 @@ alias_schema = AliasSchema(many=True)
 social_schema = SocialSchema(many=True)
 song_schema = SongsSchema(many=True)
 
+
 createvtuber_help = '''
 THIS RESOURCE IS PROTECTED, SO YOU CANNOT GET ACCESS TO USE.
 
@@ -26,7 +28,7 @@ vtapi = Api()
 
 class ListVTubers(Resource, MethodResource):
     @doc(description="VTuber's full list.", tags=['VTuber Resource'])
-    @marshal_with(VTuberSchema(many=True), description='This method returns a vtuber full list from the database')
+    @marshal_with(VTuberSchema(many=True), description='This method returns a vtuber full list from the database', code=200)
     def get(self):
         vtubers = VTuber.query.all()
         response = vtuber_schema.dump(vtubers, many=True)
@@ -37,6 +39,15 @@ class ListVTubers(Resource, MethodResource):
             rep['social'] = social_schema.dump(vt.social)
             rep['songs'] = song_schema.dump(vt.songs)
         return response, 200
+
+class ListSongs(Resource, MethodResource):
+    @doc(description="VTuber's full list.", tags=['Songs Resource'])
+    @marshal_with(SongsSchema(many=True), description='This method returns a full list of songs of vtubers from the database', code=200)
+    def get(self):
+        songs = Songs.query.all()
+        response = song_schema.dump(songs, many=True)
+        return response, 200
+
 
 class GetVTuber(Resource, MethodResource):
     @doc(description='Get a VTuber by ID.', tags=['VTuber Resource'], params={'vtid': {'description': 'The VTuber id, required to find by id'}})
@@ -51,6 +62,26 @@ class GetVTuber(Resource, MethodResource):
         response['aliases'] = alias_schema.dump(vtuber.aliases)
         response["social"] = social_schema.dump(vtuber.social)
         response['songs'] = song_schema.dump(vtuber.songs)
+        return response, 200
+
+class RandomVTuber(Resource, MethodResource):
+    @doc(description="Get random VTuber", tags=['VTuber Resource'])
+    @marshal_with(VTuberSchema, description='This method returns a random vtuber from the database', code=200)
+    def get(self):
+        vtubers = VTuber.query.all()
+        vtsdict = vtuber_schema.dump(vtubers, many=True)
+        vtuber = random.choice(vtsdict)
+        response = vtuber_schema.dump(vtuber)
+        return response, 200
+
+class GetSong(Resource, MethodResource):
+    @doc(description='Get a Song by ID.', tags=['Songs Resource'], params={'sngid': {'description': 'The Song id, required to find by id'}})
+    @marshal_with(SongsSchema, description='This method returns a song information by id. If not exists, returns a 404 error.', code=200)
+    def get(self, sngid:int):
+        song = db.session.get(Songs, sngid)
+        if song is None:
+            raise NotFound("The Song does not exists.")
+        response = song_schema.dump(song, many=False)
         return response, 200
 
 class FindVTuber(Resource, MethodResource):
@@ -71,13 +102,13 @@ class FindVTuber(Resource, MethodResource):
             response['songs'] = song_schema.dump(vtuber.songs)
             return response, 200
         except NoResultFound as noresult:
-                raise NotFound(str(noresult))
+                raise NotFound("The VTuber does not exists")
 
 
 class CreateVTuber(Resource, MethodResource):
-    @doc(description='Create a new Vtuber.', tags=['VTuber Information edition'])
-    @marshal_with(VTuberSchema, description=createvtuber_help, code=201)
-    @use_kwargs(VTuberSchema, location=('json'))
+    #@doc(description='Create a new Vtuber.', tags=['VTuber Information edition'])
+    #@marshal_with(VTuberSchema, description=createvtuber_help, code=201)
+    #@use_kwargs(VTuberSchema, location=('json'))
     @jwt_required()
     def post(self):
         userid = get_jwt_identity()
@@ -144,8 +175,8 @@ class CreateVTuber(Resource, MethodResource):
         return response, 201
 
 class DeleteVTuber(Resource, MethodResource):
-    @doc(description='Delete a VTuber from the database by ID.', tags=['VTuber Information edition'])
-    @marshal_with(VTuberSchema)
+    #@doc(description='Delete a VTuber from the database by ID.', tags=['VTuber Information edition'])
+    #@marshal_with(VTuberSchema)
     @jwt_required()
     def delete(self, vtid:int):
         userid = get_jwt_identity()
@@ -169,9 +200,9 @@ class DeleteVTuber(Resource, MethodResource):
         return {}, 204
 
 class UpdateVTuber(Resource, MethodResource):
-    @doc(description="Update a VTuber's information by id", tags=['VTuber Information edition'])
-    @marshal_with(VTuberSchema)
-    @use_kwargs(VTuberSchema, location=('json'))
+    #@doc(description="Update a VTuber's information by id", tags=['VTuber Information edition'])
+    #@marshal_with(VTuberSchema)
+    #@use_kwargs(VTuberSchema, location=('json'))
     @jwt_required()
     def put(self, vtid:int):
         vtdict = request.get_json()
@@ -290,8 +321,12 @@ class UpdateVTuber(Resource, MethodResource):
         return response, 200
 
 vtapi.add_resource(ListVTubers, "/v1/vtuber")
+vtapi.add_resource(ListSongs, '/v1/songs')
+
 vtapi.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>")
+vtapi.add_resource(GetSong, "/v1/songs/<int:sngid>")
 vtapi.add_resource(FindVTuber, '/v1/vtuber/find')
+vtapi.add_resource(RandomVTuber, '/v1/vtuber/random')
 vtapi.add_resource(CreateVTuber, "/v1/vtuber/create")
 vtapi.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>")
 vtapi.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>")

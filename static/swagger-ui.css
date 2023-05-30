@@ -11072,7 +11072,12 @@
 }
 
 .swagger-ui .topbar {
-    background-color: #1b1b1b;
+    background-color: #3f3f3f;
+    backdrop-filter: saturate(200%) blur(25px);
+    width: 100%;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
     padding: 10px 0
 }
 
@@ -11217,6 +11222,7 @@
 .swagger-ui .info .title {
     color: #3b4151;
     font-family: 'Outfit', sans-serif;
+    padding-top: 3rem;
     font-size: 36px;
     margin: 0
 }

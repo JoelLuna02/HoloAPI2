@@ -33,11 +33,11 @@ jwtProviders(jwt)
 flask_exceptions(apli)
 
 docs.register(ListVTubers)
+docs.register(ListSongs)
 docs.register(GetVTuber)
+docs.register(RandomVTuber)
+docs.register(GetSong)
 docs.register(FindVTuber)
-docs.register(CreateVTuber)
-docs.register(DeleteVTuber)
-docs.register(UpdateVTuber)
 
 # Flask common routes and routines
 
@@ -50,7 +50,7 @@ def ahelp():
 
 @apli.route("/docs")
 def docs():
-    return render_template("index.html")
+    return render_template("docs.html")
 
 
 if __name__ == '__main__':
