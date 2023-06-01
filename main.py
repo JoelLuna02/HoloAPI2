@@ -1,7 +1,6 @@
 from flask_apispec.extension import FlaskApiSpec
 from flask_bootstrap import Bootstrap5
-from flask import Flask, request, render_template
-from apispec import APISpec
+from flask import Flask, request, render_template, json
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS
@@ -15,6 +14,8 @@ from vtubers import *
 from users import *
 from filestorage import *
 from exceptions import flask_exceptions
+
+import random
 
 apli = Flask(__name__)          # Flask App
 apli.config.from_object(conf)   # Flask Config
@@ -52,6 +53,9 @@ def ahelp():
 def docs():
     return render_template("docs.html")
 
+@apli.route("/")
+def index():
+    return render_template("index.html")
 
 if __name__ == '__main__':
     apli.run(debug=False)
