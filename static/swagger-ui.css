@@ -11223,7 +11223,7 @@
 .swagger-ui .info .title {
     color: #3b4151;
     font-family: 'Outfit', sans-serif;
-    padding-top: 3rem;
+    padding-top: 0;
     font-size: 36px;
     font-weight: bold;
     margin: 0

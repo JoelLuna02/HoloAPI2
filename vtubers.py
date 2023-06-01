@@ -370,20 +370,29 @@ class UpdateSong(Resource, MethodResource):
         elif song is None or song not in vtuber.songs:
             raise NotFound("Song not found or does not appears in the vtuber data.")
         
-        song.name = songdict.get('name', song.name)
-        song.album = songdict.get('album', song.album)
-        song.releasedate = songdict.get('releasedate', song.releasedate)
-        song.compositor = songdict.get('compositor', song.compositor)
-        song.lyrics = songdict.get('lyrics', song.lyrics)
-        song.albumpt = songdict.get('albumpt', song.albumpt)
-        db.session.commit()     # Save the changes
-        response = {
-            "song": song_schema.dump(song, many=False),
-            "message": f"Succssfully Song of id {sngid} updated to the vtuber {vtid}",
-            "status": "OK",
-            "code": 200
-        }
-        return response, 200
+        if songdict:
+            song.name = songdict.get('name', song.name)
+            song.album = songdict.get('album', song.album)
+            song.releasedate = songdict.get('releasedate', song.releasedate)
+            song.compositor = songdict.get('compositor', song.compositor)
+            song.lyrics = songdict.get('lyrics', song.lyrics)
+            song.albumpt = songdict.get('albumpt', song.albumpt)
+            db.session.commit()     # Save the changes
+            response = {
+                "song": song_schema.dump(song, many=False),
+                "message": f"Succssfully Song of id {sngid} updated to the vtuber {vtid}",
+                "status": "OK",
+                "code": 200
+            }
+            return response, 200
+        else:
+            response = {
+                "song": song_schema.dump(song, many=False),
+                "message": f"Nothing to change in the song of id {sngid}",
+                "status": "OK",
+                "code": 200
+            }
+            return response, 200
       
 
 vtapi.add_resource(ListVTubers, "/v1/vtuber")
