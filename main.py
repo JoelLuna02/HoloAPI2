@@ -1,5 +1,4 @@
 from flask_apispec.extension import FlaskApiSpec
-from flask_bootstrap import Bootstrap5
 from flask import Flask, request, render_template, json
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
@@ -21,7 +20,6 @@ apli = Flask(__name__)          # Flask App
 apli.config.from_object(conf)   # Flask Config
 db.init_app(apli)               # SQLAlchemy init
 ma.init_app(apli)               # Marshmallow init
-bootstrap = Bootstrap5(apli)
 vtapi.init_app(apli)
 userapi.init_app(apli)
 fileapi.init_app(apli)
@@ -29,9 +27,9 @@ fileapi.init_app(apli)
 mi = Migrate(apli, db)          # Migrate init
 cors = CORS(apli)               # CORS method init
 jwt = JWTManager(apli)          # JSON Web Token method init
-docs = FlaskApiSpec(apli)
-jwtProviders(jwt)
-flask_exceptions(apli)
+docs = FlaskApiSpec(apli)       # Flask APISPEC Init for documentation
+jwtProviders(jwt)               # Define JWT Exceptions
+flask_exceptions(apli)          # Define Flask Exceptions
 
 docs.register(ListVTubers)
 docs.register(ListSongs)

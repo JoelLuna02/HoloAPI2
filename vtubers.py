@@ -3,7 +3,7 @@ from flask import request
 from werkzeug.exceptions import NotFound, Forbidden
 from flask_restful import Api, Resource
 from flask_jwt_extended import get_jwt_identity, jwt_required
-from flask_apispec import doc, marshal_with, use_kwargs
+from flask_apispec import doc, marshal_with
 from flask_apispec.views import MethodResource
 from sqlalchemy.orm.exc import NoResultFound
 from marshmallow import fields
@@ -86,7 +86,6 @@ class GetSong(Resource, MethodResource):
 
 class FindVTuber(Resource, MethodResource):
     @doc(description='Find a VTuber.', tags=['VTuber Resource'])
-    #@use_kwargs({'fullname': fields.Str(required=False), 'fanname': fields.Str(required=False), 'youtube': fields.Str(required=False)})
     @marshal_with(VTuberSchema, description='This method find and return a vtuber with her/his information, if it exists', code=200)
     def get(self):
         params = request.args.to_dict()
@@ -106,9 +105,6 @@ class FindVTuber(Resource, MethodResource):
 
 
 class CreateVTuber(Resource, MethodResource):
-    #@doc(description='Create a new Vtuber.', tags=['VTuber Information edition'])
-    #@marshal_with(VTuberSchema, description=createvtuber_help, code=201)
-    #@use_kwargs(VTuberSchema, location=('json'))
     @jwt_required()
     def post(self):
         userid = get_jwt_identity()
@@ -165,7 +161,8 @@ class CreateVTuber(Resource, MethodResource):
         response = {
             "vtuber": vtuber_schema.dump(vtuber),
             "message": "VTuber created sucessfully",
-            "status": "201 created"
+            "status": "created",
+            "code": 201
         }
         response["vtuber"]["hashtags"] = hashtags_schema.dump(hashtag)
         response["vtuber"]["avatar"] = avatar_schema.dump(avatar)
@@ -174,9 +171,35 @@ class CreateVTuber(Resource, MethodResource):
         response["vtuber"]["songs"] = song_schema.dump(songsdict)
         return response, 201
 
+class AddSong(Resource, MethodResource):
+    @jwt_required()
+    def post(self, vtid:int):
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        vtuber = db.session.get(VTuber, vtid)
+        if vtuber is None:
+            raise NotFound("The VTuber does not exists.")
+        songdict = request.get_json()
+        song = Songs(
+            name=songdict['name'], album=songdict["album"], releasedate=songdict["releasedate"],
+            compositor=songdict['compositor'], lyrics=songdict['lyrics'], albumpt=songdict['albumpt']
+        )
+        db.session.flush()
+        song.vtid = vtuber.id
+        vtuber.songs.append(song)
+        db.session.add(song)
+        db.session.commit()
+        response = {
+            "song": song_schema.dump(song, many=False),
+            "message": f"Succssfully Song added to the vtuber {vtid}",
+            "status": "Created",
+            "code": 201
+        }
+        return response, 201
+
 class DeleteVTuber(Resource, MethodResource):
-    #@doc(description='Delete a VTuber from the database by ID.', tags=['VTuber Information edition'])
-    #@marshal_with(VTuberSchema)
     @jwt_required()
     def delete(self, vtid:int):
         userid = get_jwt_identity()
@@ -199,10 +222,21 @@ class DeleteVTuber(Resource, MethodResource):
         db.session.commit()
         return {}, 204
 
+class DeleteSong(Resource, MethodResource):
+    @jwt_required()
+    def delete(self, sngid:int):
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        song = db.session.get(Songs, sngid)
+        if song is None:
+            raise NotFound("Song not found.")
+        db.session.delete(song)
+        db.session.commit()
+        return {}, 204
+
 class UpdateVTuber(Resource, MethodResource):
-    #@doc(description="Update a VTuber's information by id", tags=['VTuber Information edition'])
-    #@marshal_with(VTuberSchema)
-    #@use_kwargs(VTuberSchema, location=('json'))
     @jwt_required()
     def put(self, vtid:int):
         vtdict = request.get_json()
@@ -320,6 +354,38 @@ class UpdateVTuber(Resource, MethodResource):
         response["newdata"]["songs"] = song_schema.dump(vtuber.songs)
         return response, 200
 
+class UpdateSong(Resource, MethodResource):
+    @jwt_required()
+    def patch(self, vtid:int, sngid:int):
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        vtuber = db.session.get(VTuber, vtid)
+        song = db.session.get(Songs, sngid)
+        songdict = request.get_json()
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        
+        if vtuber is None:
+            raise NotFound("The VTuber does not exists.")
+        elif song is None or song not in vtuber.songs:
+            raise NotFound("Song not found or does not appears in the vtuber data.")
+        
+        song.name = songdict.get('name', song.name)
+        song.album = songdict.get('album', song.album)
+        song.releasedate = songdict.get('releasedate', song.releasedate)
+        song.compositor = songdict.get('compositor', song.compositor)
+        song.lyrics = songdict.get('lyrics', song.lyrics)
+        song.albumpt = songdict.get('albumpt', song.albumpt)
+        db.session.commit()     # Save the changes
+        response = {
+            "song": song_schema.dump(song, many=False),
+            "message": f"Succssfully Song of id {sngid} updated to the vtuber {vtid}",
+            "status": "OK",
+            "code": 200
+        }
+        return response, 200
+      
+
 vtapi.add_resource(ListVTubers, "/v1/vtuber")
 vtapi.add_resource(ListSongs, '/v1/songs')
 
@@ -327,6 +393,10 @@ vtapi.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>")
 vtapi.add_resource(GetSong, "/v1/songs/<int:sngid>")
 vtapi.add_resource(FindVTuber, '/v1/vtuber/find')
 vtapi.add_resource(RandomVTuber, '/v1/vtuber/random')
+
 vtapi.add_resource(CreateVTuber, "/v1/vtuber/create")
+vtapi.add_resource(AddSong, '/v1/songs/add/<int:vtid>')
 vtapi.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>")
+vtapi.add_resource(DeleteSong, "/v1/songs/delete/<int:sngid>")
 vtapi.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>")
+vtapi.add_resource(UpdateSong, "/v1/songs/update/<int:vtid>/<int:sngid>")
