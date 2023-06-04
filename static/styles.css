@@ -34,13 +34,14 @@ h1 {
     left: 0;
     padding: 68px 0 0;
     width: 240px;
-    background-color: white;
+    background-color: #f1f2f3;
     z-index: 600;
 }
 
 @media (max-width: 991.98px) {
     .sidebar {
         width: 100%;
+        background-color: white;
     }
 }
 

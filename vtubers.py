@@ -41,16 +41,23 @@ class ListVTubers(Resource, MethodResource):
         return response, 200
 
 class ListSongs(Resource, MethodResource):
-    @doc(description="VTuber's full list.", tags=['Songs Resource'])
+    @doc(description="Songs full list.", tags=['Songs Resource'])
     @marshal_with(SongsSchema(many=True), description='This method returns a full list of songs of vtubers from the database', code=200)
     def get(self):
         songs = Songs.query.all()
         response = song_schema.dump(songs, many=True)
         return response, 200
 
+class ListAlias(Resource, MethodResource):
+    @doc(description="Aliases full list.", tags=['Alias Resource'])
+    @marshal_with(VTuberSchema(many=True), description='This method returns a full list of aliases of vtubers from the database', code=200)
+    def get(self):
+        aliases = Aliases.query.all()
+        response = alias_schema.dump(aliases, many=True)
+        return response, 200
 
 class GetVTuber(Resource, MethodResource):
-    @doc(description='Get a VTuber by ID.', tags=['VTuber Resource'], params={'vtid': {'description': 'The VTuber id, required to find by id'}})
+    @doc(description='Get a VTuber by ID.', tags=['VTuber Resource'], params={'vtid': {'description': 'The VTuber id'}})
     @marshal_with(VTuberSchema, description='This method returns a vtuber with her/his information by id. If not exists, returns a 404 error.', code=200)
     def get(self, vtid:int):
         vtuber = db.session.get(VTuber, vtid)
@@ -80,13 +87,21 @@ class GetSong(Resource, MethodResource):
     def get(self, sngid:int):
         song = db.session.get(Songs, sngid)
         if song is None:
-            raise NotFound("The Song does not exists.")
+            raise NotFound("Song not found.")
         response = song_schema.dump(song, many=False)
+        return response, 200
+
+class GetAlias(Resource, MethodResource):
+    def get(self, alid):
+        alias = db.session.get(Aliases, alid)
+        if alias is None:
+            raise NotFound("Alias not found")
+        response = alias_schema.dump(alias, many=False)
         return response, 200
 
 class FindVTuber(Resource, MethodResource):
     @doc(description='Find a VTuber.', tags=['VTuber Resource'])
-    @marshal_with(VTuberSchema, description='This method find and return a vtuber with her/his information, if it exists', code=200)
+    @marshal_with(VTuberSchema, description='This method find and return a vtuber with her/his information, if it exists by params. Parameters available: fullname, kanji, fanname and youtube.', code=200)
     def get(self):
         params = request.args.to_dict()
         try:
@@ -199,6 +214,31 @@ class AddSong(Resource, MethodResource):
         }
         return response, 201
 
+class AddAlias(Resource, MethodResource):
+    @jwt_required()
+    def post(self, vtid:int):
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        vtuber = db.session.get(VTuber, vtid)
+        if vtuber is None:
+            raise NotFound("The VTuber does not exists.")
+        alidict = request.get_json()
+        alias = Aliases(alias=alidict["alias"])
+        db.session.flush()
+        alias.vt_id = vtuber.id
+        vtuber.aliases.append(alias)
+        db.session.add(alias)
+        db.session.commit()
+        response = {
+            "new_alias": alias_schema.dump(alias, many=False),
+            "message": f"Succssfully Alias added to the vtuber {vtid}",
+            "status": "Created",
+            "code": 201
+        }
+        return response, 201
+
 class DeleteVTuber(Resource, MethodResource):
     @jwt_required()
     def delete(self, vtid:int):
@@ -233,6 +273,20 @@ class DeleteSong(Resource, MethodResource):
         if song is None:
             raise NotFound("Song not found.")
         db.session.delete(song)
+        db.session.commit()
+        return {}, 204
+
+class DeleteAlias(Resource, MethodResource):
+    @jwt_required()
+    def delete(self, alid:int):
+        userid = get_jwt_identity()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        alias = db.session.get(Aliases, alid)
+        if alias is None:
+            raise NotFound("Alias not found.")
+        db.session.delete(alias)
         db.session.commit()
         return {}, 204
 
@@ -388,24 +442,61 @@ class UpdateSong(Resource, MethodResource):
         else:
             response = {
                 "song": song_schema.dump(song, many=False),
-                "message": f"Nothing to change in the song of id {sngid}",
+                "message": f"Nothing to changes",
                 "status": "OK",
                 "code": 200
             }
             return response, 200
-      
+
+class UpdateAlias(Resource, MethodResource):
+    @jwt_required()
+    def patch(self, vtid:int, alid:int):
+        userid = get_jwt_identity()
+        alidict = request.get_json()
+        user = db.session.get(User, userid)
+        if user and not user.is_admin:
+            raise Forbidden("You need administrative privileges to access this resource")
+        vtuber = db.session.get(VTuber, vtid)
+        alias = db.session.get(Aliases, alid)
+        if vtuber is None:
+            raise NotFound("The VTuber does not exists.")
+        elif alias is None or alias not in vtuber.aliases:
+            raise NotFound("Alias not found or does not appears in the vtuber data.")
+        if alidict:
+            alias.alias = alidict.get("alias", alias.alias)
+            db.session.commit()
+            response = {
+                "alias": alias_schema.dump(alias, many=False),
+                "message": f"Succssfully Alias of id {alid} updated to the vtuber {vtid}",
+                "code": 200,
+                "status": "OK"
+            }
+            return response, 200
+        else:
+            response = {
+                "alias": alias_schema.dump(alias, many=False),
+                "message": f"Nothing to changes",
+                "code": 200,
+                "status": "OK"
+            }
+            return response, 200
 
 vtapi.add_resource(ListVTubers, "/v1/vtuber")
 vtapi.add_resource(ListSongs, '/v1/songs')
+vtapi.add_resource(ListAlias, '/v1/aliases')
 
 vtapi.add_resource(GetVTuber, "/v1/vtuber/<int:vtid>")
 vtapi.add_resource(GetSong, "/v1/songs/<int:sngid>")
+vtapi.add_resource(GetAlias, '/v1/aliases/<int:alid>')
 vtapi.add_resource(FindVTuber, '/v1/vtuber/find')
 vtapi.add_resource(RandomVTuber, '/v1/vtuber/random')
 
 vtapi.add_resource(CreateVTuber, "/v1/vtuber/create")
 vtapi.add_resource(AddSong, '/v1/songs/add/<int:vtid>')
+vtapi.add_resource(AddAlias, '/v1/aliases/add/<int:vtid>')
 vtapi.add_resource(DeleteVTuber, "/v1/vtuber/delete/<int:vtid>")
 vtapi.add_resource(DeleteSong, "/v1/songs/delete/<int:sngid>")
+vtapi.add_resource(DeleteAlias, "/v1/aliases/delete/<int:alid>")
 vtapi.add_resource(UpdateVTuber, "/v1/vtuber/update/<int:vtid>")
 vtapi.add_resource(UpdateSong, "/v1/songs/update/<int:vtid>/<int:sngid>")
+vtapi.add_resource(UpdateAlias, "/v1/aliases/update/<int:vtid>/<int:alid>")
