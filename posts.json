@@ -103,7 +103,7 @@
     "fullname": "Takanashi Kiara",
     "kanji": "小鳥遊キアラ",
     "gender": "Female",
-    "age": -1,
+    "age": -2,
     "units": [
         "Hololive-EN",
         "Myth"
@@ -115,7 +115,7 @@
     "height": 165,
     "youtube": "https://www.youtube.com/@TakanashiKiara",
     "avatar": {
-        "file": "http://localhost:8080/v1/assets/imgfile/kiara.jpg",
+        "file": "http://localhost:8080/v1/assets/kiara.jpg",
         "source": "https://twitter.com/tkkRamune/status/1606261164110921731",
         "creator": "@tkkRamune (テキカ Ramune illust.🍥)",
         "app": "Twitter"
@@ -149,7 +149,7 @@
             "releasedate": "2020-02-13",
             "compositor": "Kai Gojo",
             "lyrics": "Aya Shinno",
-            "portrait": "http://localhost:8080/v1/assets/imgfile/heartchallenger.jpg"
+            "portrait": "http://localhost:8080/v1/assets/heartchallenger.jpg"
         },
         {
             "name": "HINOTORI",
@@ -157,7 +157,7 @@
             "releasedate": "2020-11-26",
             "compositor": "Kai Gojo",
             "lyrics": "Aya Shinno",
-            "portrait": "http://localhost:8080/v1/assets/imgfile/hinotori.png"
+            "portrait": "http://localhost:8080/v1/assets/hinotori.png"
         },
         {
             "name": "SPARKS",
@@ -165,10 +165,67 @@
             "releasedate": "2021-07-06",
             "compositor": "KIRA",
             "lyrics": "KIRA",
-            "portrait": "http://localhost:8080/v1/assets/imgfile/sparks.png"
+            "portrait": "http://localhost:8080/v1/assets/sparks.png"
         }
     ]
 }
+
+{
+    "fullname": "Watson Amelia",
+    "kanji": "ワトソン・アメリア",
+    "gender": "Female",
+    "age": -1,
+    "units": [
+        "Hololive-EN",
+        "Myth"
+    ],
+    "debut": "2020-09-13",
+    "fanname": "teamates",
+    "zodiac": "Capricorn",
+    "birthday": "January 6",
+    "height": 150,
+    "youtube": "https://www.youtube.com/@WatsonAmelia",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/watson.png",
+        "source": "https://www.pixiv.net/artworks/103611058",
+        "creator": "M.Q (mqkyrie)",
+        "app": "pixiv"
+    },
+    "illust": "nabi",
+    "hashtags": {
+        "stream_tag": "#amelive",
+        "fanart_tag": "#ameliaRT"
+    },
+    "aliases": [
+        {
+            "alias": "Ame"
+        },
+        {
+            "alias": "AmechanGround"
+        },
+        {
+            "alias": "PounderGremlin"
+        },
+        {
+            "alias": "AmeArmando"
+        },
+        {
+            "alias": "Watson"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/watsonameliaEN"
+        },
+        {
+            "socialapp": "Twitch",
+            "socialurl": "http://www.twitch.tv/watsonamelia_hololiveen"
+        }
+    ],
+    "songs": []
+}
+
 {
     "fullname": "Gawr Gura",
     "kanji": "がうる・ぐら",
@@ -185,7 +242,7 @@
     "height": 141,
     "youtube": "https://www.youtube.com/@GawrGura",
     "avatar": {
-        "file": "http://localhost:8080/v1/assets/imgfile/gura.jpg",
+        "file": "http://localhost:8080/v1/assets/gura.jpg",
         "source": "https://www.pixiv.net/en/artworks/95150374",
         "creator": "一条レイ (Ichigo Rei)",
         "app": "Pixiv"
@@ -213,6 +270,123 @@
         {
             "socialapp": "Twitter",
             "socialurl": "https://twitter.com/gawrgura"
+        }
+    ],
+    "songs": []
+}
+{
+    "fullname": "Ouro Kronii",
+    "kanji": "オーロ・クロニー",
+    "gender": "Female",
+    "age": -2,
+    "units": [
+        "Hololive-EN",
+        "Council"
+    ],
+    "debut": "2021-08-23",
+    "fanname": "Kronies",
+    "zodiac": "Pisces",
+    "birthday": "March 14",
+    "height": 168,
+    "youtube": "https://www.youtube.com/@OuroKronii",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/kronii.png",
+        "source": "https://www.pixiv.net/artworks/99477548",
+        "creator": "CB",
+        "app": "pixiv"
+    },
+    "illust": "WADARCO🍎",
+    "hashtags": {
+        "stream_tag": "#krotime",
+        "fanart_tag": "#kronillust"
+    },
+    "aliases": [
+        {
+            "alias": "Warden of 'Time'"
+        },
+        {
+            "alias": "Kronini"
+        },
+        {
+            "alias": "Kroniicopter"
+        },
+        {
+            "alias": "Kronster"
+        },
+        {
+            "alias": "Ouro Krono"
+        },
+        {
+            "alias": "Clock"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/ourokronii"
+        },
+        {
+            "socialurl": "TikTok",
+            "socialurl": "https://www.tiktok.com/@ourokronii_holoen"
+        }
+    ],
+    "songs": []
+}
+
+{
+    "fullname": "Hakos Baelz",
+    "kanji": "ハコス・ベールズ",
+    "gender": "Female",
+    "age": -3,
+    "units": [
+        "Hololive-EN",
+        "Council"
+    ],
+    "debut": "2021-08-23",
+    "fanname": "Brats",
+    "zodiac": "Pisces",
+    "birthday": "February 29",
+    "height": 149,
+    "youtube": "https://www.youtube.com/@HakosBaelz",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/baelz.jpg",
+        "source": "https://twitter.com/VOICENOSAGYOUBA/status/1665524416640438274",
+        "creator": "VOICE (@VOICENOSAGYOUBA)",
+        "app": "Twitter"
+    },
+    "illust": "Mika Pikazo",
+    "hashtags": {
+        "stream_tag": "#enterbaelz #ベール登場",
+        "fanart_tag": "#illustrayBAE #ベーアート"
+    },
+    "aliases": [
+        {
+            "alias": "Bae"
+        },
+        {
+            "alias": "Chaos"
+        },
+        {
+            "alias": "Rat"
+        },
+        {
+            "alias": "Hakotaro"
+        },
+        {
+            "alias": "Hayko Baelz"
+        },
+        {
+            "alias": "Hakos Bagel"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/hakosbaelz"
+        },
+        {
+            "socialapp": "TikTok",
+            "socialurl": "https://www.tiktok.com/@hakosbaelz_holoen"
         }
     ],
     "songs": []

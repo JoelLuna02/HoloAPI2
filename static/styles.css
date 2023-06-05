@@ -1,3 +1,8 @@
+:root {
+    --offcanvas-width: 270px;
+    --topNavbarHeight: 56px;
+}
+
 body {
     margin: 0;
     background-color: #f1f2f3;
@@ -15,46 +20,4 @@ body {
 
 h1 {
     color: #3b4151;
-}
-
-@media (min-width: 991.98px) {
-    main {
-        padding-left: 240px;
-    }
-}
-
-.grayinv {
-    filter: invert(100%) grayscale(100%)
-}
-
-.sidebar {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    padding: 68px 0 0;
-    width: 240px;
-    background-color: #f1f2f3;
-    z-index: 600;
-}
-
-@media (max-width: 991.98px) {
-    .sidebar {
-        width: 100%;
-        background-color: white;
-    }
-}
-
-.sidebar .active {
-    border-radius: 5px;
-}
-
-.sidebar-sticky {
-    position: relative;
-    top: 0;
-    height: calc(100vh - 48px);
-    padding-top: 0.5rem;
-    overflow-x: hidden;
-    overflow-y: auto;
-    /* Scrollable contents if viewport is shorter than content. */
 }

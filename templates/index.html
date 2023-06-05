@@ -1,168 +1,52 @@
-<!DOCTYPE html>
-
-<html lang="es">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Jost&family=Outfit&family=Readex+Pro&family=Ubuntu+Mono&display=swap"
-        rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <title>HoloAPI</title>
-</head>
-
-<body>
-    <style>
-        p {
-            line-height: 1.1;
-        }
-    </style>
-    <header>
-        <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse showdow-0 border border-3">
-            <div class="position-sticky">
-                <div class="list-group list-group-flush mx-3 mt-4">
-                    <a class="list-group-item list-group-item-action py-2 ripple" aria-current="true"
-                        data-bs-toggle="collapse" href="#collapseExample1" aria-expanded="true"
-                        aria-controls="collapseExample1">
-                        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Expanded menu</span>
-                    </a>
-
-                    <ul id="collapseExample1" class="collapse show list-group list-group-flush bg-body p-3 rounded">
-                        <li class="list-group-item py-1 border border-0">
-                            <a href="#about" class="text-reset">About this proyect</a>
-                        </li>
-                        <li class="list-group-item py-1 border border-0">
-                            <a href="#resources" class="text-reset">Resources</a>
-                        </li>
-                        <li class="list-group-item py-1 border border-0">
-                            <a href="" class="text-reset">Link</a>
-                        </li>
-                        <li class="list-group-item py-1 border border-0">
-                            <a href="" class="text-reset">Link</a>
-                        </li>
-                        <li class="list-group-item py-1 border border-0">
-                            <a href="" class="text-reset">Link</a>
-                        </li>
-                        <li class="list-group-item py-1 border border-0">
-                            <a href="" class="text-reset">Link</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <nav class="navbar navbar-expand-lg bg-white fixed-top shadow border">
-            <div class="container-fluid container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
-                    aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="#">Navbar</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-ellipsis"></i>
-                </button>
-                <div class="collapse navbar-collapse p-4 pt-0 p-lg-0" id="navbarNav">
-                    <hr class="d-lg-none text-dark-50">
-                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
-                        <li class="nav-item  col-6 col-lg-auto">
-                            <a class="nav-link active  py-2 px-0 px-lg-2" aria-current="page" href="#">Home</a>
-                        </li>
-                        <li class="nav-item  col-6 col-lg-auto">
-                            <a class="nav-link py-2 px-0 px-lg-2" href="#">Features</a>
-                        </li>
-                        <li class="nav-item  col-6 col-lg-auto">
-                            <a class="nav-link py-2 px-0 px-lg-2" href="#">Pricing</a>
-                        </li>
-                        <li class="nav-item  col-6 col-lg-auto">
-                            <a class="nav-link py-2 px-0 px-lg-2 disabled">Disabled</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main style="margin-top: 20px;">
+{% extends "base.html" %}
+{%block title%}HoloAPI{% endblock %}
+{% block content %}
+<main style="margin-top: 58px;">
+    <div class="bg-dark">
         <div class="container">
-            <h1 class="pt-5 pb-6 text-center fw-bold display-2"><i class="fas fa-play text-primary me-2"></i>HoloAPI</h1>
-            <h5 class="text-center fw-bold">A new API RESTful fanmade based in Hololive</h5>
-            <h6 class="text-dark-50 fw-bold p-4 text-end">Current version: 1.0</h6>
-            <h3 class="fw-bold pt-3" id="about">About this proyect</h3><hr/>
-            <p class="p-3">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                distinctio earum repellat quaerat voluptatibus placeat nam,
-                commodi optio pariatur est quia magnam eum harum corrupti dicta,
-                aliquam sequi voluptate quas.
-            </p>
-            <h3 class="fw-bold pt-2" id="resources">Available resources</h3><hr/>
-            <p class="p-3">
-                These are the resources available for your use:
-                <ul>
-                    <li>
-                       <a href="/v1/vtuber" class="text-dark">https://holoapi.com/v1/vtuber:</a>
-                       <span class="ms-5">Shows a full list of available vtubers in the API Rest</span>
-                    </li>
-                    <li>
-                        <a href="/v1/vtuber/1" class="text-dark">https://holoapi.com/v1/vtuber/{id}</a>
-                        <span class="ms-5">Shows a vtuber information searching by id</span>
-                     </li>
-                     <li>
-                        <a href="/v1/vtuber/find" class="text-dark">https://holoapi.com/v1/vtuber/find?</a>
-                        <span class="ms-5">Shows a vtuber information searching by params: fullname, kanji, fanname or youtube or both.</span>
-                     </li>
-                     <li>
-                        <a href="/v1/vtuber/random" class="text-dark">https://holoapi.com/v1/vtuber/random</a>
-                        <span class="ms-5">Shows a vtuber information by random searching</span>
-                     </li>
-                     <li>
-                        <a href="/v1/songs" class="text-dark">https://holoapi.com/v1/songs</a>
-                        <span class="ms-5">Shows a full list of available songs of vtubers</span>
-                     </li>
-                     <li>
-                        <a href="/v1/songs/12" class="text-dark">https://holoapi.com/v1/songs/{id}</a>
-                        <span class="ms-5">Shows a song searching by id</span>
-                     </li>
-                     <li>
-                        <a href="/v1/aliases" class="text-dark">https://holoapi.com/v1/aliases:</a>
-                        <span class="ms-5">Shows a full list of available aliases of vtubers in the API Rest</span>
-                     </li>
-                     <li>
-                         <a href="/v1/aliases/12" class="text-dark">https://holoapi.com/v1/aliases/{id}</a>
-                         <span class="ms-5">Shows an alias searching by id</span>
-                      </li>
-                </ul>
-                <h5 class="pt-2 pb-2"><span class="fw-bold">Note:</span> Only resources for get requests are shown. Post, delete, and put and patch requests are blocked for security.</h5>
-                <h5 class="fw-bold me-2">For more information, see <a href="/docs">the docs</a> section. you can also test the available resources.</h5>
-            </p>
-        </div>
-
-        <div style="background-color: #f1f2f3">
-            <div class="container p-4">
-                <section class="mb-4">
-                    <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt
-                        distinctio earum repellat quaerat voluptatibus placeat nam,
-                        commodi optio pariatur est quia magnam eum harum corrupti dicta,
-                        aliquam sequi voluptate quas.
-                    </p>
-                </section>
+            <div class="text-center text-white">
+                <h1 class="pt-5 fw-bold display-1 text-white"><i class="fas fa-play text-primary me-2"></i>HoloAPI</h1>
+                <h5 class="pb-4 fw-bold">A new API RESTful fanmade based in Hololive Productions</h5>
             </div>
         </div>
-        <div class="text-center p-3" style="background-color: rgba(255, 255, 255, 0.9)">
-            © 2020 Copyright:
-            <a class="text-dark" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+    </div>
+    <div class="container pt-3">
+        <div class="alert alert-primary pb-3" role="alert">
+            <h3>Web page and Project under construction</h3><hr/>
+            <p>
+                We inform all users that this project is still in the development stages, so it is likely that: both problems 
+                or bugs will appear on the client side, as well as may present content incorrect or erroneous information when consuming 
+                this API.<br/><br>
+
+                The HoloAPI team is working as hard as possible to provide you with a better user experience. If you have any
+                problems, you can send a message in the 'issues' section on the GitHub page.<br/><br>
+
+                A message from the developers.
+            </p>
         </div>
-    </main>
-
-    <script src="{{ url_for('static', filename='jquery-3.7.0.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script>
-</body>
-
-</html>
+        <h2 class="fw-bold">Registered entities:</h2><hr/>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6"><h3>{{vtuber_cant}}</h3><h6>VTubers</h6></div>
+                            <div class="col-6"><h3 class="display-3 text-center"><i class="fas fa-users"></i></h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6"><h3>{{song_cant}}</h3><h6>Songs</h6></div>
+                            <div class="col-6"><h3 class="display-3 text-center"><i class="fas fa-users"></i></h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

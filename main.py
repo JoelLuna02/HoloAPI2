@@ -53,7 +53,13 @@ def docs():
 
 @apli.route("/")
 def index():
-    return render_template("index.html")
+    vtubers = VTuber.query.all()
+    songs = Songs.query.all()
+    vtdata = vtuber_schema.dump(vtubers, many=True)
+    sngdata = song_schema.dump(songs, many=True)
+    canti1 = len(vtdata)
+    canti2 = len(sngdata)
+    return render_template("index.html", vtuber_cant=canti1, song_cant=canti2)
 
 if __name__ == '__main__':
     apli.run(debug=False)
