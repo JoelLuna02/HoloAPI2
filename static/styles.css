@@ -26,3 +26,7 @@ h1 {
     height: 300px;
     overflow: hidden;
 }
+.cutimage img {
+  height: 100%;
+  width: auto;
+}
