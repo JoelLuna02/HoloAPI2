@@ -1,8 +1,8 @@
-"""holoapi_init_db
+"""empty message
 
-Revision ID: 65493bdba445
+Revision ID: d873f631951c
 Revises: 
-Create Date: 2023-05-27 01:02:10.847859
+Create Date: 2023-06-05 12:13:27.970938
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mysql
 
 # revision identifiers, used by Alembic.
-revision = '65493bdba445'
+revision = 'd873f631951c'
 down_revision = None
 branch_labels = None
 depends_on = None
