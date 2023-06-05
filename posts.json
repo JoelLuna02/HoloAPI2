@@ -243,9 +243,9 @@
     "youtube": "https://www.youtube.com/@GawrGura",
     "avatar": {
         "file": "http://localhost:8080/v1/assets/gura.jpg",
-        "source": "https://www.pixiv.net/en/artworks/95150374",
+        "source": "https://twitter.com/bokkun168/status/1550239200469188608",
         "creator": "一条レイ (Ichigo Rei)",
-        "app": "Pixiv"
+        "app": "Twitter"
     },
     "illust": "Amashiro Natsuki",
     "hashtags": {

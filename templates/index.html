@@ -24,28 +24,32 @@
                 A message from the developers.
             </p>
         </div>
-        <h2 class="fw-bold">Registered entities:</h2><hr/>
+        <h2 class="fw-bold">VTuber examples:</h2><hr/>
         <div class="row">
-            <div class="col-sm-3">
+            {% for vt in vtuber %}
+            <div class="col-sm-4">
                 <div class="card">
+                    <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                        <img src="{{ vt.avatar.file }}" class="img-fluid" />
+                    </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-6"><h3>{{vtuber_cant}}</h3><h6>VTubers</h6></div>
-                            <div class="col-6"><h3 class="display-3 text-center"><i class="fas fa-users"></i></h3></div>
-                        </div>
+                        <h3 class="fw-bold"></h3>{{vt.fullname}}<hr/>
+                        <p>
+                            <span class="fw-bold">Kanji</span>: {{vt.kanji}}
+                            <span class="fw-bold">Debut</span>: {{vt.debut}}
+                            <span class="fw-bold">Height:</span>: {{vt.height}} cm
+                            <span class="fw-bold">Birthday</span>: {{ vt.birthday }}
+                            <span class="fw-bold">Gender</span>: {{ vt.gender }}
+                        </p>
+                        <a class="text-dark-50 text-end" href="{{vt.avatar.source}}" target="_blank">
+                            Art by: {{ vt.avatar.creator }}
+                        </a><hr/>
+
+                        <a class="btn btn-primary" href="https://holoapi.onrender.com/v1/vtuber/{{vt.id}}">View in raw JSON</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-3">
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6"><h3>{{song_cant}}</h3><h6>Songs</h6></div>
-                            <div class="col-6"><h3 class="display-3 text-center"><i class="fas fa-users"></i></h3></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </main>
