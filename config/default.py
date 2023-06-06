@@ -2,7 +2,7 @@ import os
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
 
-SQLALCHEMY_DATABASE_URI = os.getenv("MYSQL_URL")
+SQLALCHEMY_DATABASE_URI = os.getenv("DB_URL")
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 SHOW_SQLALCHEMY_LOG_MESSAGES = False
 JWT_SECRET_KEY = os.getenv("JWT_SECRET")

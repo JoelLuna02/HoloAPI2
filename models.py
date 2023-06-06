@@ -1,7 +1,7 @@
 import bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import CheckConstraint
-from sqlalchemy.dialects.mysql import JSON
+from sqlalchemy.dialects.postgresql import JSON
 
 db = SQLAlchemy()       # SQLAlchemy dialect
 
