@@ -53,12 +53,21 @@ def docs():
 
 @apli.route("/")
 def index():
+    totalvt = 0
+    totalali = 0
+    totalsocial = 0
     vtubers = VTuber.query.all()
     vtdata = vtuber_schema.dump(vtubers, many=True)
-    rnddata = []
+    for vt in vtdata:
+        for aliase in vt.aliases:
+            totalali += 1
+        for socialn in vt.social:
+            totalsocial += 1
+        totalvt += 1
+    rnddata = []    # List to store six vtubers randomly
     for i in range(0, 6):
         rnddata.append(vtdata.pop(vtdata.index(random.choice(vtdata))))
-    return render_template("index.html", vtuber=rnddata)
+    return render_template("index.html", vtuber=rnddata, total_vtubers=totalvt, total_aliases=totalali, total_social=totalsocial)
 
 if __name__ == '__main__':
     apli.run(debug=False)

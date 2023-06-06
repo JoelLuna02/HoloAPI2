@@ -391,3 +391,237 @@
     ],
     "songs": []
 }
+
+{
+    "fullname": "Nanashi Mumei",
+    "kanji": "七詩ムメイ",
+    "gender": "Female",
+    "age": -1,
+    "units": [
+        "Hololive-EN",
+        "Council"
+    ],
+    "debut": "2021-08-23",
+    "fanname": "Hoomans",
+    "zodiac": "Leo",
+    "birthday": "August 4",
+    "height": "156",
+    "youtube": "https://www.youtube.com/@NanashiMumei",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/mumei.jpg",
+        "source": "https://twitter.com/rubyandnooby/status/1647976143675613185",
+        "creator": "Rooby N 🍙 | Commissions open (@RubyandNooby)",
+        "app": "Twitter"
+    },
+    "illust": "azure",
+    "hashtags": {
+        "stream_tag": "#watchMEI",
+        "fanart_tag": "#drawMEI #ムメ絵"
+    },
+    "aliases": [
+        {
+            "alias": "Guardian of 'Civilization'"
+        },
+        {
+            "alias": "Meimei",
+        },
+        {
+            "alias": "Moomers"
+        },
+        {
+            "alias": "Nanashi Muman"
+        },
+        {
+            "alias": "Towl"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/nanashimumei_en"
+        }
+    ],
+    "songs": []
+}
+
+{
+    "fullname": "IRyS",
+    "kanji": "IRyS",
+    "gender": "Female",
+    "age": -3,
+    "units": [
+        "Hololive-EN",
+        "Proyect: HOPE"
+    ],
+    "debut": "2021-07-11",
+    "fanname": "Irystocrats",
+    "zodiac": "Pisces",
+    "birthday": "7 March",
+    "height": 166,
+    "youtube": "https://www.youtube.com/@IRyS",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/irys.png",
+        "source": "https://www.pixiv.net/artworks/96661033",
+        "creator": "Fishine / 魚生",
+        "app": "pixiv"
+    },
+    "illust": "redjuice",
+    "hashtags": {
+        "stream_tag": "#IRyShow",
+        "fanart_tag": "#IRySart"
+    },
+    "aliases": [
+        {
+            "alias": "HOPE"
+        },
+        {
+            "alias": "YabaIRyS"
+        }
+        {
+            "alias": "SeisoRyS"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/irys_en"
+        }
+    ],
+    "songs": []
+}
+
+{
+    "fullname": "Ninomae Ina’nis",
+    "kanji": "一伊那尓栖 / にのまえいなにす",
+    "gender": "Female",
+    "age": -3,
+    "units": [
+        "Hololive-EN",
+        "Myth"
+    ],
+    "debut": "2020-09-12",
+    "fanname": "tentacult",
+    "zodiac": "Taurus",
+    "birthday": "May 20",
+    "height": 157,
+    "youtube": "https://www.youtube.com/@NinomaeInanis",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/inanis.jpg",
+        "source": "https://www.pixiv.net/en/artworks/84442027",
+        "creator": "SquChan",
+        "app": "pixiv"
+    },
+    "illust": "Kuroboshi Kouhaku",
+    "hashtags": {
+        "stream_tag": "#TAKOTIME #タコタイム",
+        "fanart_tag": "#inART #いなート"
+    },
+    "aliases": [
+        {
+            "alias": "Ina"
+        },
+        {
+            "alias": "Tako"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/ninomaeinanis"
+        }
+    ],
+    "songs": []
+}
+
+{
+    "fullname": "Ceres Fauna",
+    "kanji": "セレス・ファウナ",
+    "gender": "Female",
+    "age": 45400000,
+    "units": [
+        "Hololive-EN",
+        "Council"
+    ],
+    "debut": "2021-08-23",
+    "fanname": "Saplings",
+    "zodiac": "Aries",
+    "birthday": "21 March",
+    "height": 164,
+    "youtube": "https://www.youtube.com/@CeresFauna",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/fauna.jpg",
+        "source": "https://twitter.com/kogekoge1207/status/1665541429643411456",
+        "creator": "こげ🍙 (@kogekoge1207)",
+        "app": "Twitter"
+    },
+    "illust": "Tohsaka Asagi",
+    "hashtags": {
+        "stream_tag": "#faunline",
+        "fanart_tag": "#FineFaunart"
+    },
+    "aliases": [
+        {
+            "alias": "Keeper of 'Nature'"
+        },
+        {
+            "alias": "Faufau"
+        },
+        {
+            "alias": "Ceres Faun"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/ceresfauna"
+        }
+    ],
+    "songs": []
+}
+
+{
+    "fullname": "Tsukumo Sana",
+    "kanji": "九十九佐命",
+    "gender": "Female",
+    "age": 13800000,
+    "units": [
+        "Hololive-EN",
+        "Council",
+        "Alum"
+    ],
+    "debut": "2021-08-23",
+    "fanname": "Sanallite",
+    "zodiac": "Geminis",
+    "birthday": "June 10",
+    "height": 169,
+    "youtube": "https://www.youtube.com/@TsukumoSana",
+    "avatar": {
+        "file": "http://localhost:8080/v1/assets/sana.jpg",
+        "source": "https://www.pixiv.net/en/artworks/99823741",
+        "creator": "ellie牛奶主義者",
+        "app": "pixiv"
+    },
+    "illust": "pako",
+    "hashtags": {
+        "stream_tag": "#SanaLanding",
+        "fanart_tag": "#galaxillust"
+    },
+    "aliases": [
+        {
+            "alias": "Speaker of 'Space'"
+        },
+        {
+            "alias": "Tsukumo San"
+        },
+        {
+            "alias": "Sananana"
+        }
+    ],
+    "social": [
+        {
+            "socialapp": "Twitter",
+            "socialurl": "https://twitter.com/tsukumosana"
+        }
+    ],
+    "songs": []
+}
