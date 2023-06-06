@@ -30,7 +30,7 @@
             <div class="col-sm-4">
                 <div class="card mb-3">
                     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                        <img src="{{ vt.avatar.file }}" class="img-fluid" />
+                        <!-- img src="{{ vt.avatar.file }}" class="img-fluid" /-->
                     </div>
                     <div class="card-body">
                         <h3 class="fw-bold">{{vt.fullname}}</h3><hr/>
@@ -41,9 +41,9 @@
                             <span class="fw-bold">Birthday</span>: {{ vt.birthday }}<br/>
                             <span class="fw-bold">Gender</span>: {{ vt.gender }}<br/>
                         </p>
-                        <a class="text-dark text-end" href="{{vt.avatar.source}}" target="_blank">
+                        <!-- a class="text-dark text-end" href="{{vt.avatar.source}}" target="_blank">
                             Art by: {{ vt.avatar.creator }}
-                        </a><hr/>
+                        </a><hr/-->
 
                         <a class="btn btn-primary" href="https://holoapi.onrender.com/v1/vtuber/{{vt.id}}" target="_blank">
                             View in raw JSON
