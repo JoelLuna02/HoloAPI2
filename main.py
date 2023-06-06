@@ -59,9 +59,9 @@ def index():
     vtubers = VTuber.query.all()
     vtdata = vtuber_schema.dump(vtubers, many=True)
     for vt in vtdata:
-        for aliase in vt.aliases:
+        for aliase in vt["aliases"]:
             totalali += 1
-        for socialn in vt.social:
+        for socialn in vt["social"]:
             totalsocial += 1
         totalvt += 1
     rnddata = []    # List to store six vtubers randomly
