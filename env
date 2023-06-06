@@ -1,0 +1,5 @@
+export APISPEC_SWAGGER='/swagger/'
+export JWT_SECRET='HoloAPI_213ijsdzsdf081#%$)(=ADSA_secret'
+export MYSQL_URL='mysql+mysqlconnector://c01oj64wpuv5eejsn75v:pscale_pw_fnnLVIjlgDPUC30r4CX0kOprknySnpYPJbJD8mYa8LO@aws.connect.psdb.cloud/holoapi-db'
+export SECRET_KEY='HoloAPI_oasdjsadjoasd12312%$!4341%$&'
+export FLASK_APP=main:apli
