@@ -45,9 +45,9 @@
                                     <span class="fw-bold">Gender</span>: {{ vt.gender }}<br/><br/>
                                     <span class="fw-bold">Units</span>: 
                                     <ul>
-                                        {{ for unit in vt.units }}
+                                        {% for unit in vt.units %}
                                         <li>{{ unit }}</li>
-                                        {{ endfor }}
+                                        {% endfor %}
                                     </ul><br/>
                                     <span class="fw-bold">FanArt tags</span>: {{ vt.hashtags.fanart_tag }}<br/>
                                     <span class="fw-bold">Stream tags</span>: {{ vt.hashtags.stream_tag }}<br/>
