@@ -33,7 +33,7 @@
                         <div class="col-md-5">
                             <img src="{{ vt.avatar.file }}" class="img-fluid">
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-7">
                             <div class="card-body">
                                 <h3 class="fw-bold">{{vt.fullname}}</h3><hr/>
                                 <p>
@@ -41,7 +41,16 @@
                                     <span class="fw-bold">Debut</span>: {{vt.debut}}<br/>
                                     <span class="fw-bold">Height</span>: {{vt.height}} cm<br/>
                                     <span class="fw-bold">Birthday</span>: {{ vt.birthday }}<br/>
-                                    <span class="fw-bold">Gender</span>: {{ vt.gender }}<br/>
+                                    <span class="fw-bold">Zodiac sign</span>: {{ vt.zodiac }}<br/>
+                                    <span class="fw-bold">Gender</span>: {{ vt.gender }}<br/><br/>
+                                    <span class="fw-bold">Units</span>: 
+                                    <ul>
+                                        {{ for unit in vt.units }}
+                                        <li>{{ unit }}</li>
+                                        {{ endfor }}
+                                    </ul><br/>
+                                    <span class="fw-bold">FanArt tags</span>: {{ vt.hashtags.fanart_tag }}<br/>
+                                    <span class="fw-bold">Stream tags</span>: {{ vt.hashtags.stream_tag }}<br/>
                                 </p>
                                 <a class="text-dark text-end" href="{{vt.avatar.source}}" target="_blank">
                                     Art by: {{ vt.avatar.creator }}
