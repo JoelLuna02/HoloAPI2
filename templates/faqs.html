@@ -33,6 +33,70 @@
             on a web page, or vice versa). You'll come across it quite often, so in this article, we give you all you need to work with JSON using
             JavaScript, including parsing JSON so you can access data within it, and creating JSON.
         </p>
+        <h3 class="fw-bold">What are the available endpoints?</h3><hr/>
+        <p>
+            There are different endpoints available, in which you can make your queries wherever and whenever you want. For example:
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless ">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">URL</th>
+                        <th scope="col">Method</th>
+                        <th scope="col">It is restricted?</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td>https://holoapi.onrender.com/v1/vtuber</td>
+                        <td>GET</td>
+                        <td>No</td>
+                        <td>Shows a complete list of all available VTubers.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">2</th>
+                        <td>https://holoapi.onrender.com/v1/vtuber/{id}</td>
+                        <td>GET</td>
+                        <td>No</td>
+                        <td>It searches for a vtuber through an id, and if it finds it, it shows her/his information.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">3</th>
+                        <td>https://holoapi.onrender.com/v1/vtuber/find?</td>
+                        <td>GET</td>
+                        <td>No</td>
+                        <td>
+                            It searches for a vtuber through parameters, and if it finds it, it shows her/his information. <br/>
+                            Available parameters: fullname, kanji, fanname, and youtubeurl
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">4</th>
+                        <td>https://holoapi.onrender.com/v1/vtuber/random</td>
+                        <td>GET</td>
+                        <td>No</td>
+                        <td>Searches and displays a vtuber randomly.</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">5</th>
+                        <td>https://holoapi.onrender.com/v1/songs</td>
+                        <td>GET</td>
+                        <td>No</td>
+                        <td>Shows a full list of available songs from vtubers. Currently it will return an empty list(*).</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">6</th>
+                        <td>https://holoapi.onrender.com/v1/songs/{id}</td>
+                        <td>GET</td>
+                        <td>No</td>
+                        <td>It searches for a song through an id, and if it finds it, it shows its information.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
         <h3 class="fw-bold">Bibliography</h3><hr/>
         <ul>
