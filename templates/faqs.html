@@ -33,12 +33,116 @@
             on a web page, or vice versa). You'll come across it quite often, so in this article, we give you all you need to work with JSON using
             JavaScript, including parsing JSON so you can access data within it, and creating JSON.
         </p>
+        <h3 class="fw-bold">What information is stored in this RESTful API?</h3><hr/>
+        <p>
+            A little of everything.<br/><br/>
+            There are a good number of attributes available on the VTuber entity. It also has many-to-many and one-to-one relationships.
+        </p>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">Atribute</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>fullname</td>
+                        <td>Full name of the VTuber</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>kanji</td>
+                        <td>VTuber name in Japanese sinogram (Kanji)</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>gender</td>
+                        <td>Gender of the vtuber (Female, Male or other)</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>age</td>
+                        <td>VTuber Age</td>
+                        <td>Integer</td>
+                    </tr>
+                    <tr>
+                        <td>units</td>
+                        <td>Units to which the vtuber belongs</td>
+                        <td>String list</td>
+                    </tr>
+                    <tr>
+                        <td>debut</td>
+                        <td>Debut date of the vtuber on YouTube</td>
+                        <td>Date</td>
+                    </tr>
+                    <tr>
+                        <td>fanname</td>
+                        <td>Name of which is attributed to the fans.</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>zodiac</td>
+                        <td>Corresponding zodiac sign according to her/his birthday.</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>birthday</td>
+                        <td>Birthday date</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>height</td>
+                        <td>Height established for the vtuber (in centimeters).</td>
+                        <td>Integer</td>
+                    </tr>
+                    <tr>
+                        <td>youtube</td>
+                        <td>YouTube channel url</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>hashtags</td>
+                        <td>Tags used for streams and fanarts.</td>
+                        <td>One-to-One relationship</td>
+                    </tr>
+                    <tr>
+                        <td>avatar</td>
+                        <td>Information of the avatar set.</td>
+                        <td>One-to-One relationship</td>
+                    </tr>
+                    <tr>
+                        <td>illust</td>
+                        <td>Name of the illustrator of the vtuber.</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>aliases</td>
+                        <td>Complete list of all corresponding nicknames</td>
+                        <td>Many-to-Many relationship</td>
+                    </tr>
+                    <tr>
+                        <td>social</td>
+                        <td>Full list of all relevant social networks and platforms</td>
+                        <td>Many-to-Many relationship</td>
+                    </tr>
+                    <tr>
+                        <td>songs</td>
+                        <td>Complete list of all its corresponding songs.</td>
+                        <td>Many-to-Many relationship</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <h3 class="fw-bold">What are the available endpoints?</h3><hr/>
         <p>
             There are different endpoints available, in which you can make your queries wherever and whenever you want. For example:
         </p>
         <div class="table-responsive">
-            <table class="table table-striped table-borderless ">
+            <table class="table table-striped table-borderless table-light">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -85,16 +189,20 @@
                         <td>https://holoapi.onrender.com/v1/songs</td>
                         <td>GET</td>
                         <td>No</td>
-                        <td>Shows a full list of available songs from vtubers. Currently it will return an empty list(*).</td>
+                        <td>Shows a full list of available songs from vtubers. Currently it will return an empty list.(*)</td>
                     </tr>
                     <tr>
                         <th scope="row">6</th>
                         <td>https://holoapi.onrender.com/v1/songs/{id}</td>
                         <td>GET</td>
                         <td>No</td>
-                        <td>It searches for a song through an id, and if it finds it, it shows its information.</td>
+                        <td>It searches for a song through an id, and if it finds it, it shows its information.(*)</td>
                     </tr>
                 </tbody>
+                <caption>
+                    Note: Resources marked with an asterisk (*) indicate that they may show erroneous information or simply won't show
+                    anything since they are still in development stages.
+                </caption>
             </table>
         </div>
 
