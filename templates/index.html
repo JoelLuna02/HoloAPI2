@@ -39,18 +39,23 @@
                                 <p>
                                     <span class="fw-bold">Kanji</span>: {{vt.kanji}}<br/>
                                     <span class="fw-bold">Debut</span>: {{vt.debut}}<br/>
+                                    <span class="fw-bold">FanArt tags</span>: {{ vt.hashtags.fanart_tag }}<br/>
+                                    <span class="fw-bold">Stream tags</span>: {{ vt.hashtags.stream_tag }}<br/>
                                     <span class="fw-bold">Height</span>: {{vt.height}} cm<br/>
+                                    {% if vt.age == 0 %}<span class="fw-bold">Age</span>: Not defined{% endif %}
+                                    {% if vt.age == -1 %}<span class="fw-bold">Height</span>: Unknown{% endif %}
+                                    {% if vt.age == -2 %}<span class="fw-bold">Height</span>: Infinity{% endif %}
+                                    {% if vt.age <= -3 %}<span class="fw-bold">Height</span>: Other{% endif %}
+                                    {% if vt.age >= 1 %}<span class="fw-bold">Height</span>: {vt.age} years old{% endif %}
                                     <span class="fw-bold">Birthday</span>: {{ vt.birthday }}<br/>
                                     <span class="fw-bold">Zodiac sign</span>: {{ vt.zodiac }}<br/>
-                                    <span class="fw-bold">Gender</span>: {{ vt.gender }}<br/><br/>
+                                    <span class="fw-bold">Gender</span>: {{ vt.gender }}<br/>
                                     <span class="fw-bold">Units</span>: 
                                     <ul>
                                         {% for unit in vt.units %}
                                         <li>{{ unit }}</li>
                                         {% endfor %}
-                                    </ul><br/>
-                                    <span class="fw-bold">FanArt tags</span>: {{ vt.hashtags.fanart_tag }}<br/>
-                                    <span class="fw-bold">Stream tags</span>: {{ vt.hashtags.stream_tag }}<br/>
+                                    </ul>
                                 </p>
                                 <a class="text-dark text-end" href="{{vt.avatar.source}}" target="_blank">
                                     Art by: {{ vt.avatar.creator }}
