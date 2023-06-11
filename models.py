@@ -19,11 +19,11 @@ class VTuber(db.Model):
     age = db.Column(db.Integer)                       # Age of vtuber
     units = db.Column(JSON)                           # List of units
     debut = db.Column(db.Date)                        # Date of debut
-    fanname = db.Column(db.String(50), unique=True)
-    zodiac = db.Column(db.String(20))
-    birthday = db.Column(db.String(50))
-    height = db.Column(db.Integer)
-    youtube = db.Column(db.String(150), unique=True)
+    fanname = db.Column(db.String(50), unique=True)   # Fan name
+    zodiac = db.Column(db.String(20))                 # Zodiac sign
+    birthday = db.Column(db.String(50))               # Birthday
+    height = db.Column(db.Integer)                    # Height in cm
+    youtube = db.Column(db.String(150), unique=True)  # Youtube URL
     hashtags = db.relationship('HashTags', uselist=False, backref='vtuber', cascade='all, delete')
     avatar = db.relationship('Avatar', uselist=False, backref='vtuber', cascade='all, delete')
     illust = db.Column(db.String(50))

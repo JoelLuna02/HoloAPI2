@@ -3,7 +3,7 @@ window.onload = function() {
 
   // the following lines will be replaced by docker/configurator, when it runs in a docker-container
   window.ui = SwaggerUIBundle({
-    url: "http://localhost:5000/swagger/",
+    url: "https://holoapi.onrender.com/swagger/",
     dom_id: '#swagger-ui',
     deepLinking: true,
     presets: [

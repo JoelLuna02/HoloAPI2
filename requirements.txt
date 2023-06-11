@@ -26,7 +26,7 @@ MarkupSafe
 marshmallow
 marshmallow-sqlalchemy
 mdurl
-psycopg2-binary
+mysql-connector-python
 packaging
 protobuf
 Pygments

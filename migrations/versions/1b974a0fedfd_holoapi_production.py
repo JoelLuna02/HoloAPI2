@@ -1,8 +1,8 @@
-"""empty message
+"""holoapi_production
 
-Revision ID: 6aee4718b43f
+Revision ID: 1b974a0fedfd
 Revises: 
-Create Date: 2023-06-06 10:56:18.498462
+Create Date: 2023-06-10 23:19:38.990321
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision = '6aee4718b43f'
+revision = '1b974a0fedfd'
 down_revision = None
 branch_labels = None
 depends_on = None
