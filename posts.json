@@ -1,627 +1,638 @@
-{
-    "fullname": "Mori Calliope",
-    "kanji": "森カリオペ",
-    "gender": "Female",
-    "age": 0,
-    "units": [
-        "Hololive-EN",
-        "Myth"
-    ],
-    "debut": "2020-09-12",
-    "fanname": "Dead Beats",
-    "zodiac": "Aries",
-    "birthday": "April 4",
-    "height": 167,
-    "youtube": "https://www.youtube.com/@MoriCalliope",
-    "avatar": {
-        "file": "http://localhost:5000/v1/assets/calliope.jpg",
-        "source": "https://twitter.com/Nekomeshi17Nez/status/1580269421204893696",
-        "creator": "@Nekomeshi17Nez (NEZん)",
-        "app": "Twitter"
+[
+    {
+        "age": 0,
+        "aliases": [
+            {
+                "alias": "Calli",
+                "id": 1
+            },
+            {
+                "alias": "Miss Mori",
+                "id": 2
+            },
+            {
+                "alias": "CallioP",
+                "id": 3
+            },
+            {
+                "alias": "Dad",
+                "id": 4
+            },
+            {
+                "alias": "Kawaiiope",
+                "id": 5
+            },
+            {
+                "alias": "Calvin Mori",
+                "id": 6
+            },
+            {
+                "alias": "YUNG SH1N1GAM1 BO1",
+                "id": 7
+            },
+            {
+                "alias": "C-Man",
+                "id": 8
+            }
+        ],
+        "avatar": {
+            "app": "Twitter",
+            "creator": "@Nekomeshi17Nez (NEZん)",
+            "file": "https://holoapi.onrender.com/v1/assets/calliope.jpg",
+            "source": "https://twitter.com/Nekomeshi17Nez/status/1580269421204893696"
+        },
+        "birthday": "April 4",
+        "debut": "2020-09-12",
+        "fanname": "Dead Beats",
+        "fullname": "Mori Calliope",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#callillust #カリイラスト",
+            "stream_tag": "#calliolive #カリオライ"
+        },
+        "height": 167,
+        "id": 1,
+        "illust": "Yukisame",
+        "kanji": "森カリオペ",
+        "social": [
+            {
+                "id": 3,
+                "socialapp": "TikTok",
+                "socialurl": "https://www.tiktok.com/@moricalliope_hololiveen"
+            },
+            {
+                "id": 2,
+                "socialapp": "Twitch",
+                "socialurl": "https://www.twitch.tv/moricalliope_hololiveen"
+            },
+            {
+                "id": 1,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/moricalliope"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Myth"
+        ],
+        "youtube": "https://www.youtube.com/@MoriCalliope",
+        "zodiac": "Aries"
     },
-    "illust": "Yukisame",
-    "hashtags": {
-        "stream_tag": "#calliolive #カリオライ",
-        "fanart_tag": "#calliolive #カリオライ"
+    {
+        "age": -2,
+        "aliases": [
+            {
+                "alias": "Kusotori",
+                "id": 9
+            },
+            {
+                "alias": "Tenchou",
+                "id": 10
+            },
+            {
+                "alias": "Kiwawa",
+                "id": 11
+            }
+        ],
+        "avatar": {
+            "app": "Twitter",
+            "creator": "@tkkRamune (テキカ Ramune illust.🍥)",
+            "file": "https://holoapi.onrender.com/v1/assets/kiara.jpg",
+            "source": "https://twitter.com/tkkRamune/status/1606261164110921731"
+        },
+        "birthday": "July 6",
+        "debut": "2020-09-12",
+        "fanname": "kfp",
+        "fullname": "Takanashi Kiara",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#artsofashes #絵ニックス",
+            "stream_tag": "#kfp #キアライブ"
+        },
+        "height": 165,
+        "id": 2,
+        "illust": "huke",
+        "kanji": "小鳥遊キアラ",
+        "social": [
+            {
+                "id": 4,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/takanashikiara"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Myth"
+        ],
+        "youtube": "https://www.youtube.com/@TakanashiKiara",
+        "zodiac": "Cancer"
     },
-    "aliases": [
-        {
-            "alias": "Calli"
+    {
+        "age": -3,
+        "aliases": [
+            {
+                "alias": "Ina",
+                "id": 12
+            },
+            {
+                "alias": "Tako",
+                "id": 13
+            }
+        ],
+        "avatar": {
+            "app": "pixiv",
+            "creator": "SquChan",
+            "file": "https://holoapi.onrender.com/v1/assets/inanis.jpg",
+            "source": "https://www.pixiv.net/en/artworks/84442027"
         },
-        {
-            "alias": "Miss Mori"
+        "birthday": "May 20",
+        "debut": "2020-09-12",
+        "fanname": "tentacult",
+        "fullname": "Ninomae Ina’nis",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#inART #いなート",
+            "stream_tag": "#TAKOTIME #タコタイム"
         },
-        {
-            "alias": "CallioP"
-        },
-        {
-            "alias": "Dad"
-        },
-        {
-            "alias": "Kawaiiope"
-        },
-        {
-            "alias": "Calvin Mori"
-        },
-        {
-            "alias": "YUNG SH1N1GAM1 BO1"
-        },
-        {
-            "alias": "C-Man"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/moricalliope"
-        },
-        {
-            "socialapp": "Twitch",
-            "socialurl": "https://www.twitch.tv/moricalliope_hololiveen"
-        },
-        {
-            "socialapp": "TikTok",
-            "socialurl": "https://www.tiktok.com/@moricalliope_hololiveen"
-        }
-    ],
-    "songs": [
-        {
-            "name": "Reaper or Rapper? Introduction Rap",
-            "album": "DEAD BEATS",
-            "releasedate": "2022-09-17",
-            "compositor": "kokorobeats a.k.a K's/Coro",
-            "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
-        },
-        {
-            "name": "Excuse My Rudeness, But Could You Please RIP?♡",
-            "album": "DEAD BEATS",
-            "releasedate": "2022-09-17",
-            "compositor": "kokorobeats a.k.a K's/Coro",
-            "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
-        },
-        {
-            "name": "DEAD BEATS",
-            "album": "DEAD BEATS",
-            "releasedate": "2022-09-17",
-            "compositor": "kokorobeats a.k.a K's/Coro",
-            "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
-        },
-        {
-            "name": "Live Again",
-            "album": "DEAD BEATS",
-            "releasedate": "2022-09-19",
-            "compositor": "kokorobeats a.k.a K's/Coro",
-            "lyrics": "Mori Calliope",
-            "albumpt": "http://localhost:5000/v1/assets/deadbeats.png"
-        }
-    ]
-}
-{
-    "fullname": "Takanashi Kiara",
-    "kanji": "小鳥遊キアラ",
-    "gender": "Female",
-    "age": -2,
-    "units": [
-        "Hololive-EN",
-        "Myth"
-    ],
-    "debut": "2020-09-12",
-    "fanname": "kfp",
-    "zodiac": "Cancer",
-    "birthday": "July 6",
-    "height": 165,
-    "youtube": "https://www.youtube.com/@TakanashiKiara",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/kiara.jpg",
-        "source": "https://twitter.com/tkkRamune/status/1606261164110921731",
-        "creator": "@tkkRamune (テキカ Ramune illust.🍥)",
-        "app": "Twitter"
+        "height": 157,
+        "id": 3,
+        "illust": "Kuroboshi Kouhaku",
+        "kanji": "一伊那尓栖 / にのまえいなにす",
+        "social": [
+            {
+                "id": 5,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/ninomaeinanis"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Myth"
+        ],
+        "youtube": "https://www.youtube.com/@NinomaeInanis",
+        "zodiac": "Taurus"
     },
-    "illust": "huke",
-    "hashtags": {
-        "stream_tag": "#kfp #キアライブ",
-        "fanart_tag": "#artsofashes #絵ニックス"
+    {
+        "age": 10000,
+        "aliases": [
+            {
+                "alias": "Same-chan",
+                "id": 14
+            },
+            {
+                "alias": "Apex Predator",
+                "id": 15
+            },
+            {
+                "alias": "City Pop Shark",
+                "id": 16
+            },
+            {
+                "alias": "Samegaki",
+                "id": 17
+            }
+        ],
+        "avatar": {
+            "app": "Twitter",
+            "creator": "一条レイ (Ichigo Rei)",
+            "file": "https://holoapi.onrender.com/v1/assets/gura.jpg",
+            "source": "https://twitter.com/bokkun168/status/1550239200469188608"
+        },
+        "birthday": "June 20",
+        "debut": "2020-09-13",
+        "fanname": "chumbuds",
+        "fullname": "Gawr Gura",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#gawrt",
+            "stream_tag": "#gawrgura"
+        },
+        "height": 141,
+        "id": 4,
+        "illust": "Amashiro Natsuki",
+        "kanji": "がうる・ぐら",
+        "social": [
+            {
+                "id": 6,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/gawrgura"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Myth"
+        ],
+        "youtube": "https://www.youtube.com/@GawrGura",
+        "zodiac": "Geminis"
     },
-    "aliases": [
-        {
-            "alias": "Kusotori"
+    {
+        "age": -1,
+        "aliases": [
+            {
+                "alias": "Ame",
+                "id": 18
+            },
+            {
+                "alias": "AmechanGround",
+                "id": 19
+            },
+            {
+                "alias": "PounderGremlin",
+                "id": 20
+            },
+            {
+                "alias": "AmeArmando",
+                "id": 21
+            },
+            {
+                "alias": "Watson",
+                "id": 22
+            }
+        ],
+        "avatar": {
+            "app": "pixiv",
+            "creator": "M.Q (mqkyrie)",
+            "file": "https://holoapi.onrender.com/v1/assets/watson.png",
+            "source": "https://www.pixiv.net/artworks/103611058"
         },
-        {
-            "alias": "Tenchou"
+        "birthday": "January 6",
+        "debut": "2020-09-13",
+        "fanname": "teamates",
+        "fullname": "Watson Amelia",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#ameliaRT",
+            "stream_tag": "#amelive"
         },
-        {
-            "alias": "Kiwawa"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/takanashikiara"
-        }
-    ],
-    "songs": [
-        {
-            "name": "Heart Challenger",
-            "album": "Heart Challenger",
-            "releasedate": "2020-02-13",
-            "compositor": "Kai Gojo",
-            "lyrics": "Aya Shinno",
-            "portrait": "http://localhost:8080/v1/assets/heartchallenger.jpg"
-        },
-        {
-            "name": "HINOTORI",
-            "album": "HINOTORI",
-            "releasedate": "2020-11-26",
-            "compositor": "Kai Gojo",
-            "lyrics": "Aya Shinno",
-            "portrait": "http://localhost:8080/v1/assets/hinotori.png"
-        },
-        {
-            "name": "SPARKS",
-            "album": "SPARKS",
-            "releasedate": "2021-07-06",
-            "compositor": "KIRA",
-            "lyrics": "KIRA",
-            "portrait": "http://localhost:8080/v1/assets/sparks.png"
-        }
-    ]
-}
-
-{
-    "fullname": "Watson Amelia",
-    "kanji": "ワトソン・アメリア",
-    "gender": "Female",
-    "age": -1,
-    "units": [
-        "Hololive-EN",
-        "Myth"
-    ],
-    "debut": "2020-09-13",
-    "fanname": "teamates",
-    "zodiac": "Capricorn",
-    "birthday": "January 6",
-    "height": 150,
-    "youtube": "https://www.youtube.com/@WatsonAmelia",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/watson.png",
-        "source": "https://www.pixiv.net/artworks/103611058",
-        "creator": "M.Q (mqkyrie)",
-        "app": "pixiv"
+        "height": 150,
+        "id": 5,
+        "illust": "nabi",
+        "kanji": "ワトソン・アメリア",
+        "social": [
+            {
+                "id": 8,
+                "socialapp": "Twitch",
+                "socialurl": "http://www.twitch.tv/watsonamelia_hololiveen"
+            },
+            {
+                "id": 7,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/watsonameliaEN"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Myth"
+        ],
+        "youtube": "https://www.youtube.com/@WatsonAmelia",
+        "zodiac": "Capricorn"
     },
-    "illust": "nabi",
-    "hashtags": {
-        "stream_tag": "#amelive",
-        "fanart_tag": "#ameliaRT"
+    {
+        "age": -3,
+        "aliases": [
+            {
+                "alias": "HOPE",
+                "id": 23
+            },
+            {
+                "alias": "YabaIRyS",
+                "id": 24
+            },
+            {
+                "alias": "SeisoRyS",
+                "id": 25
+            }
+        ],
+        "avatar": {
+            "app": "pixiv",
+            "creator": "Fishine / 魚生",
+            "file": "https://holoapi.onrender.com/v1/assets/irys.png",
+            "source": "https://www.pixiv.net/artworks/96661033"
+        },
+        "birthday": "7 March",
+        "debut": "2021-07-11",
+        "fanname": "Irystocrats",
+        "fullname": "IRyS",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#IRySart",
+            "stream_tag": "#IRyShow"
+        },
+        "height": 166,
+        "id": 6,
+        "illust": "redjuice",
+        "kanji": "IRyS",
+        "social": [
+            {
+                "id": 9,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/irys_en"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Proyect: HOPE"
+        ],
+        "youtube": "https://www.youtube.com/@IRyS",
+        "zodiac": "Pisces"
     },
-    "aliases": [
-        {
-            "alias": "Ame"
+    {
+        "age": 45400000,
+        "aliases": [
+            {
+                "alias": "Keeper of 'Nature'",
+                "id": 26
+            },
+            {
+                "alias": "Faufau",
+                "id": 27
+            },
+            {
+                "alias": "Ceres Faun",
+                "id": 28
+            }
+        ],
+        "avatar": {
+            "app": "Twitter",
+            "creator": "こげ🍙 (@kogekoge1207)",
+            "file": "https://holoapi.onrender.com/v1/assets/fauna.jpg",
+            "source": "https://twitter.com/kogekoge1207/status/1665541429643411456"
         },
-        {
-            "alias": "AmechanGround"
+        "birthday": "21 March",
+        "debut": "2021-08-23",
+        "fanname": "Saplings",
+        "fullname": "Ceres Fauna",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#FineFaunart",
+            "stream_tag": "#faunline"
         },
-        {
-            "alias": "PounderGremlin"
-        },
-        {
-            "alias": "AmeArmando"
-        },
-        {
-            "alias": "Watson"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/watsonameliaEN"
-        },
-        {
-            "socialapp": "Twitch",
-            "socialurl": "http://www.twitch.tv/watsonamelia_hololiveen"
-        }
-    ],
-    "songs": []
-}
-
-{
-    "fullname": "Gawr Gura",
-    "kanji": "がうる・ぐら",
-    "gender": "Female",
-    "age": 10000,
-    "units": [
-        "Hololive-EN",
-        "Myth"
-    ],
-    "debut": "2020-09-13",
-    "fanname": "chumbuds",
-    "zodiac": "Geminis",
-    "birthday": "June 20",
-    "height": 141,
-    "youtube": "https://www.youtube.com/@GawrGura",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/gura.jpg",
-        "source": "https://twitter.com/bokkun168/status/1550239200469188608",
-        "creator": "一条レイ (Ichigo Rei)",
-        "app": "Twitter"
+        "height": 164,
+        "id": 7,
+        "illust": "Tohsaka Asagi",
+        "kanji": "セレス・ファウナ",
+        "social": [
+            {
+                "id": 10,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/ceresfauna"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Council"
+        ],
+        "youtube": "https://www.youtube.com/@CeresFauna",
+        "zodiac": "Aries"
     },
-    "illust": "Amashiro Natsuki",
-    "hashtags": {
-        "stream_tag": "#gawrgura",
-        "fanart_tag": "#gawrt",
+    {
+        "age": -2,
+        "aliases": [
+            {
+                "alias": "Warden of 'Time'",
+                "id": 29
+            },
+            {
+                "alias": "Kronini",
+                "id": 30
+            },
+            {
+                "alias": "Kroniicopter",
+                "id": 31
+            },
+            {
+                "alias": "Kronster",
+                "id": 32
+            },
+            {
+                "alias": "Ouro Krono",
+                "id": 33
+            },
+            {
+                "alias": "Clock",
+                "id": 34
+            }
+        ],
+        "avatar": {
+            "app": "pixiv",
+            "creator": "CB",
+            "file": "https://holoapi.onrender.com/v1/assets/kronii.png",
+            "source": "https://www.pixiv.net/artworks/99477548"
+        },
+        "birthday": "March 14",
+        "debut": "2021-08-23",
+        "fanname": "Kronies",
+        "fullname": "Ouro Kronii",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#kronillust",
+            "stream_tag": "#krotime"
+        },
+        "height": 168,
+        "id": 8,
+        "illust": "WADARCO🍎",
+        "kanji": "オーロ・クロニー",
+        "social": [
+            {
+                "id": 12,
+                "socialapp": "TikTok",
+                "socialurl": "https://www.tiktok.com/@ourokronii_holoen"
+            },
+            {
+                "id": 11,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/ourokronii"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Council"
+        ],
+        "youtube": "https://www.youtube.com/@OuroKronii",
+        "zodiac": "Pisces"
     },
-    "aliases": [
-        {
-            "alias": "Same-chan"
+    {
+        "age": -1,
+        "aliases": [
+            {
+                "alias": "Guardian of 'Civilization'",
+                "id": 35
+            },
+            {
+                "alias": "Meimei",
+                "id": 36
+            },
+            {
+                "alias": "Moomers",
+                "id": 37
+            },
+            {
+                "alias": "Nanashi Muman",
+                "id": 38
+            },
+            {
+                "alias": "Towl",
+                "id": 39
+            }
+        ],
+        "avatar": {
+            "app": "Twitter",
+            "creator": "Rooby N 🍙 | Commissions open (@RubyandNooby)",
+            "file": "https://holoapi.onrender.com/v1/assets/mumei.jpg",
+            "source": "https://twitter.com/rubyandnooby/status/1647976143675613185"
         },
-        {
-            "alias": "Apex Predator"
-        }
-        {
-            "alias": "City Pop Shark"
-        }
-        {
-            "alias": "Samegaki"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/gawrgura"
-        }
-    ],
-    "songs": []
-}
-{
-    "fullname": "Ouro Kronii",
-    "kanji": "オーロ・クロニー",
-    "gender": "Female",
-    "age": -2,
-    "units": [
-        "Hololive-EN",
-        "Council"
-    ],
-    "debut": "2021-08-23",
-    "fanname": "Kronies",
-    "zodiac": "Pisces",
-    "birthday": "March 14",
-    "height": 168,
-    "youtube": "https://www.youtube.com/@OuroKronii",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/kronii.png",
-        "source": "https://www.pixiv.net/artworks/99477548",
-        "creator": "CB",
-        "app": "pixiv"
+        "birthday": "August 4",
+        "debut": "2021-08-23",
+        "fanname": "Hoomans",
+        "fullname": "Nanashi Mumei",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#drawMEI #ムメ絵",
+            "stream_tag": "#watchMEI"
+        },
+        "height": 156,
+        "id": 9,
+        "illust": "azure",
+        "kanji": "七詩ムメイ",
+        "social": [
+            {
+                "id": 13,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/nanashimumei_en"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Council"
+        ],
+        "youtube": "https://www.youtube.com/@NanashiMumei",
+        "zodiac": "Leo"
     },
-    "illust": "WADARCO🍎",
-    "hashtags": {
-        "stream_tag": "#krotime",
-        "fanart_tag": "#kronillust"
+    {
+        "age": -3,
+        "aliases": [
+            {
+                "alias": "Bae",
+                "id": 40
+            },
+            {
+                "alias": "Chaos",
+                "id": 41
+            },
+            {
+                "alias": "Rat",
+                "id": 42
+            },
+            {
+                "alias": "Hakotaro",
+                "id": 43
+            },
+            {
+                "alias": "Hayko Baelz",
+                "id": 44
+            },
+            {
+                "alias": "Hakos Bagel",
+                "id": 45
+            }
+        ],
+        "avatar": {
+            "app": "Twitter",
+            "creator": "VOICE (@VOICENOSAGYOUBA)",
+            "file": "https://holoapi.onrender.com/v1/assets/baelz.jpg",
+            "source": "https://twitter.com/VOICENOSAGYOUBA/status/1665524416640438274"
+        },
+        "birthday": "February 29",
+        "debut": "2021-08-23",
+        "fanname": "Brats",
+        "fullname": "Hakos Baelz",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#illustrayBAE #ベーアート",
+            "stream_tag": "#enterbaelz #ベール登場"
+        },
+        "height": 149,
+        "id": 10,
+        "illust": "Mika Pikazo",
+        "kanji": "ハコス・ベールズ",
+        "social": [
+            {
+                "id": 15,
+                "socialapp": "TikTok",
+                "socialurl": "https://www.tiktok.com/@hakosbaelz_holoen"
+            },
+            {
+                "id": 14,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/hakosbaelz"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Council"
+        ],
+        "youtube": "https://www.youtube.com/@HakosBaelz",
+        "zodiac": "Pisces"
     },
-    "aliases": [
-        {
-            "alias": "Warden of 'Time'"
+    {
+        "age": 13800000,
+        "aliases": [
+            {
+                "alias": "Speaker of 'Space'",
+                "id": 46
+            },
+            {
+                "alias": "Tsukumo San",
+                "id": 47
+            },
+            {
+                "alias": "Sananana",
+                "id": 48
+            }
+        ],
+        "avatar": {
+            "app": "pixiv",
+            "creator": "ellie牛奶主義者",
+            "file": "https://holoapi.onrender.com/v1/assets/sana.jpg",
+            "source": "https://www.pixiv.net/en/artworks/99823741"
         },
-        {
-            "alias": "Kronini"
+        "birthday": "June 10",
+        "debut": "2021-08-23",
+        "fanname": "Sanallite",
+        "fullname": "Tsukumo Sana",
+        "gender": "Female",
+        "hashtags": {
+            "fanart_tag": "#galaxillust",
+            "stream_tag": "#SanaLanding"
         },
-        {
-            "alias": "Kroniicopter"
-        },
-        {
-            "alias": "Kronster"
-        },
-        {
-            "alias": "Ouro Krono"
-        },
-        {
-            "alias": "Clock"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/ourokronii"
-        },
-        {
-            "socialurl": "TikTok",
-            "socialurl": "https://www.tiktok.com/@ourokronii_holoen"
-        }
-    ],
-    "songs": []
-}
-
-{
-    "fullname": "Hakos Baelz",
-    "kanji": "ハコス・ベールズ",
-    "gender": "Female",
-    "age": -3,
-    "units": [
-        "Hololive-EN",
-        "Council"
-    ],
-    "debut": "2021-08-23",
-    "fanname": "Brats",
-    "zodiac": "Pisces",
-    "birthday": "February 29",
-    "height": 149,
-    "youtube": "https://www.youtube.com/@HakosBaelz",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/baelz.jpg",
-        "source": "https://twitter.com/VOICENOSAGYOUBA/status/1665524416640438274",
-        "creator": "VOICE (@VOICENOSAGYOUBA)",
-        "app": "Twitter"
-    },
-    "illust": "Mika Pikazo",
-    "hashtags": {
-        "stream_tag": "#enterbaelz #ベール登場",
-        "fanart_tag": "#illustrayBAE #ベーアート"
-    },
-    "aliases": [
-        {
-            "alias": "Bae"
-        },
-        {
-            "alias": "Chaos"
-        },
-        {
-            "alias": "Rat"
-        },
-        {
-            "alias": "Hakotaro"
-        },
-        {
-            "alias": "Hayko Baelz"
-        },
-        {
-            "alias": "Hakos Bagel"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/hakosbaelz"
-        },
-        {
-            "socialapp": "TikTok",
-            "socialurl": "https://www.tiktok.com/@hakosbaelz_holoen"
-        }
-    ],
-    "songs": []
-}
-
-{
-    "fullname": "Nanashi Mumei",
-    "kanji": "七詩ムメイ",
-    "gender": "Female",
-    "age": -1,
-    "units": [
-        "Hololive-EN",
-        "Council"
-    ],
-    "debut": "2021-08-23",
-    "fanname": "Hoomans",
-    "zodiac": "Leo",
-    "birthday": "August 4",
-    "height": "156",
-    "youtube": "https://www.youtube.com/@NanashiMumei",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/mumei.jpg",
-        "source": "https://twitter.com/rubyandnooby/status/1647976143675613185",
-        "creator": "Rooby N 🍙 | Commissions open (@RubyandNooby)",
-        "app": "Twitter"
-    },
-    "illust": "azure",
-    "hashtags": {
-        "stream_tag": "#watchMEI",
-        "fanart_tag": "#drawMEI #ムメ絵"
-    },
-    "aliases": [
-        {
-            "alias": "Guardian of 'Civilization'"
-        },
-        {
-            "alias": "Meimei",
-        },
-        {
-            "alias": "Moomers"
-        },
-        {
-            "alias": "Nanashi Muman"
-        },
-        {
-            "alias": "Towl"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/nanashimumei_en"
-        }
-    ],
-    "songs": []
-}
-
-{
-    "fullname": "IRyS",
-    "kanji": "IRyS",
-    "gender": "Female",
-    "age": -3,
-    "units": [
-        "Hololive-EN",
-        "Proyect: HOPE"
-    ],
-    "debut": "2021-07-11",
-    "fanname": "Irystocrats",
-    "zodiac": "Pisces",
-    "birthday": "7 March",
-    "height": 166,
-    "youtube": "https://www.youtube.com/@IRyS",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/irys.png",
-        "source": "https://www.pixiv.net/artworks/96661033",
-        "creator": "Fishine / 魚生",
-        "app": "pixiv"
-    },
-    "illust": "redjuice",
-    "hashtags": {
-        "stream_tag": "#IRyShow",
-        "fanart_tag": "#IRySart"
-    },
-    "aliases": [
-        {
-            "alias": "HOPE"
-        },
-        {
-            "alias": "YabaIRyS"
-        }
-        {
-            "alias": "SeisoRyS"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/irys_en"
-        }
-    ],
-    "songs": []
-}
-
-{
-    "fullname": "Ninomae Ina’nis",
-    "kanji": "一伊那尓栖 / にのまえいなにす",
-    "gender": "Female",
-    "age": -3,
-    "units": [
-        "Hololive-EN",
-        "Myth"
-    ],
-    "debut": "2020-09-12",
-    "fanname": "tentacult",
-    "zodiac": "Taurus",
-    "birthday": "May 20",
-    "height": 157,
-    "youtube": "https://www.youtube.com/@NinomaeInanis",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/inanis.jpg",
-        "source": "https://www.pixiv.net/en/artworks/84442027",
-        "creator": "SquChan",
-        "app": "pixiv"
-    },
-    "illust": "Kuroboshi Kouhaku",
-    "hashtags": {
-        "stream_tag": "#TAKOTIME #タコタイム",
-        "fanart_tag": "#inART #いなート"
-    },
-    "aliases": [
-        {
-            "alias": "Ina"
-        },
-        {
-            "alias": "Tako"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/ninomaeinanis"
-        }
-    ],
-    "songs": []
-}
-
-{
-    "fullname": "Ceres Fauna",
-    "kanji": "セレス・ファウナ",
-    "gender": "Female",
-    "age": 45400000,
-    "units": [
-        "Hololive-EN",
-        "Council"
-    ],
-    "debut": "2021-08-23",
-    "fanname": "Saplings",
-    "zodiac": "Aries",
-    "birthday": "21 March",
-    "height": 164,
-    "youtube": "https://www.youtube.com/@CeresFauna",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/fauna.jpg",
-        "source": "https://twitter.com/kogekoge1207/status/1665541429643411456",
-        "creator": "こげ🍙 (@kogekoge1207)",
-        "app": "Twitter"
-    },
-    "illust": "Tohsaka Asagi",
-    "hashtags": {
-        "stream_tag": "#faunline",
-        "fanart_tag": "#FineFaunart"
-    },
-    "aliases": [
-        {
-            "alias": "Keeper of 'Nature'"
-        },
-        {
-            "alias": "Faufau"
-        },
-        {
-            "alias": "Ceres Faun"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/ceresfauna"
-        }
-    ],
-    "songs": []
-}
-
-{
-    "fullname": "Tsukumo Sana",
-    "kanji": "九十九佐命",
-    "gender": "Female",
-    "age": 13800000,
-    "units": [
-        "Hololive-EN",
-        "Council",
-        "Alum"
-    ],
-    "debut": "2021-08-23",
-    "fanname": "Sanallite",
-    "zodiac": "Geminis",
-    "birthday": "June 10",
-    "height": 169,
-    "youtube": "https://www.youtube.com/@TsukumoSana",
-    "avatar": {
-        "file": "http://localhost:8080/v1/assets/sana.jpg",
-        "source": "https://www.pixiv.net/en/artworks/99823741",
-        "creator": "ellie牛奶主義者",
-        "app": "pixiv"
-    },
-    "illust": "pako",
-    "hashtags": {
-        "stream_tag": "#SanaLanding",
-        "fanart_tag": "#galaxillust"
-    },
-    "aliases": [
-        {
-            "alias": "Speaker of 'Space'"
-        },
-        {
-            "alias": "Tsukumo San"
-        },
-        {
-            "alias": "Sananana"
-        }
-    ],
-    "social": [
-        {
-            "socialapp": "Twitter",
-            "socialurl": "https://twitter.com/tsukumosana"
-        }
-    ],
-    "songs": []
-}
+        "height": 169,
+        "id": 11,
+        "illust": "pako",
+        "kanji": "九十九佐命",
+        "social": [
+            {
+                "id": 16,
+                "socialapp": "Twitter",
+                "socialurl": "https://twitter.com/tsukumosana"
+            }
+        ],
+        "songs": [],
+        "units": [
+            "Hololive-EN",
+            "Council",
+            "Alum"
+        ],
+        "youtube": "https://www.youtube.com/@TsukumoSana",
+        "zodiac": "Geminis"
+    }
+]
