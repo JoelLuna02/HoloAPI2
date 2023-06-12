@@ -242,6 +242,76 @@
                 </tbody>
             </table>
         </div>
+        <h4 class="fw-bold">Songs Entity</h4><hr/>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">Atribute</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>name</td>
+                        <td>Name of the song</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>album</td>
+                        <td>Song album</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>releasedate</td>
+                        <td>Song release date.</td>
+                        <td>Date</td>
+                    </tr>
+                    <tr>
+                        <td>compositor</td>
+                        <td>Composer name</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>lyrics</td>
+                        <td>Song lyric name</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>albumpt</td>
+                        <td>Link to album cover image stored in the database</td>
+                        <td>String</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="fw-bold">What is a many-to-many relationship?</h3><hr/>
+        <p>
+            A many-to-many relationship occurs when multiple records in a table are associated with multiple records in 
+            another table. For example, a many-to-many relationship exists between customers and products: customers 
+            can purchase various products, and products can be purchased by many customers.<br><br/>
+            Other typical example of a many-to many relationship is one between students and classes. A student can 
+            register for many classes, and a class can include many students.<br><br/>
+            Note:
+            <ul>
+                <li>
+                    Join tables can access fields and data across tables without having to create a separate relationship. 
+                    For example, to display a list of all the classes a student enrolled in, create a portal on a layout 
+                    based on the Students table. Design the portal to show related records from the Classes table. 
+                    Then add the appropriate fields from Classes to the portal. As you browse through records in the 
+                    Students layout, the portal displays all the classes a particular student is enrolled in.
+                </li>
+            </ul>
+        </p>
+
+        <h3 class="fw-bold">What is a one-to-one relationship?</h3><hr/>
+        <p>
+            In a one-to-one relationship, one record in a table is associated with one and only one record in another 
+            table. For example, in a school database, each student has only one student ID, and each student ID is 
+            assigned to only one person.
+        </p>
 
         <h3 class="fw-bold">What are the available endpoints?</h3><hr/>
         <p>
@@ -312,10 +382,80 @@
             </table>
         </div>
 
+        <h3 class="fw-bold pt-1">Is authentication required?</h3><hr/>
+        <p>
+            Authentication will only be required for the creation, deletion and modification of entity data, which said 
+            resources are blocked for security reasons. This RESTful API has their respective administration accounts.
+        </p>
+
+        <h3 class="fw-bold pt-1">How are errors and status codes handled?</h3>
+        <p>
+            Sometimes, many of the errors that the API returns when something is wrong, returns three pieces of 
+            information:<br><br/>
+            <ul>
+                <li><span class="fw-bold">code:</span> Indicates the error code</li>
+                <li><span class="fw-bold">name:</span> Indicates the name of the error</li>
+                <li><span class="fw-bold">name:</span> Indicates why the error occurred</li>
+            </ul>
+            Many times when it comes to common errors, such as: 404 not found, 401 unauthorized or 500 internal service 
+            error, the program will show this hierarchy. still, as it is in the case of searching for a VTuber or a song, 
+            it will only show a simple message indicating that the vtuber or the song was not found or does not exist, 
+            leaving aside the name and the error code.
+        </p>
+        <h3 class="fw-bold pt-1">Is there any limitation of use?</h3>
+        <p>
+            At the moment, and because this project is still in development, yes, it does have limitations. That is why 
+            sometimes you will notice both on the main page, and also when executing a resource from this api, it can
+            return an error 500 indicating connection not available with the database. Or also, it can happen that both
+            the resources, such as the main page and its routes, have tortuous requests, that is, slow loads.
+        </p>
+
+        <h3 class="fw-bold pt-1">Is any additional documentation offered?</h3>
+        <p>
+            You can enter our <a href="/docs">docs section</a> to test our resources and more information.
+        </p>
+
+        <h3 class="fw-bold pt-1">What tools were used for the elaboration of this project?</h3>
+        <div class="row">
+            <div class="col-sm-6 text-center">
+                <img src="https://flask.palletsprojects.com/en/2.3.x/_images/flask-horizontal.png" alt="Flask" width="90%">
+            </div>
+            <div class="col-sm-6 text-end">
+                <h4>BackEnd</h4>
+                <p>
+                    Flask is a small and lightweight Python web framework that provides useful tools and features that
+                    make creating web applications in Python easier. It gives developers flexibility and is a more 
+                    accessible framework for new developers since you can build a web application quickly using only a 
+                    single Python file. Flask is also extensible and doesn’t force a particular directory structure or 
+                    require complicated boilerplate code before getting started.
+                </p>
+            </div>
+            <div class="col-sm-6 text-start">
+                <h4>Deploying</h4>
+                <p>
+                    Render is a web application that allows you to deploy any application from any service. It features 
+                    free TLS Certificates, global CDN, DDoS protection, private networks, and auto deployment using git.
+                </p>
+            </div>
+            <div class="col-sm-6 text-center">
+                <img src="https://railway.app/brand/logotype-dark.png" width="90%" alt="Render">
+            </div>
+            <div class="col-sm-6 text-end">
+                <h4>Database</h4>
+                <p>
+                    Railway is an implementation platform where an infrastructure is provisioned and then developed 
+                    and deployed in the cloud.
+                </p>
+            </div>
+        </div>
         <h3 class="fw-bold">Bibliography</h3><hr/>
         <ul>
             <li><a href="https://www.redhat.com/en/topics/api/what-is-a-rest-api">What is a REST API?</a></li>
             <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON">Working with JSON - Learn Web development | MDN</a></li>
+            <li><a href="https://fmhelp.filemaker.com/help/18/fmp/en/index.html#page/FMP_Help/many-to-many-relationships.html">Many-to-many relationships</a></li>
+            <li><a href="https://fmhelp.filemaker.com/help/18/fmp/en/index.html#page/FMP_Help/one-to-one-relationships.html">One-to-one relationships</a></li>
+            <li><a href="https://docs.railway.app/getting-started">Getting Started | Railway Docs</a></li>
+            <li><a href="https://www.digitalocean.com/community/tutorials/how-to-make-a-web-application-using-flask-in-python-3">How To Make a Web Application Using Flask in Python 3</a></li>
         </ul>
     </div>
 {% endblock %}
