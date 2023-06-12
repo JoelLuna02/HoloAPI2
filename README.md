@@ -15,4 +15,6 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-**Important**: You can declare local variables JWT_SECRET or a SECRET_KEY to run your Application, as well as a Postgres type database and store its corresponding url in the DB_URL variable. You can also declare APISPEC_SWAGGER to display the content of the swagger documentation and then modify the static/swagger-initializer.js file in the url section and define localhost:5000 to initialize the local project.
+**Important**: You can declare local variables JWT_SECRET or a SECRET_KEY to protect your Application, as well as a Postgres-like database and store its corresponding url in the DB_URL variable. You can also declare APISPEC_SWAGGER to display the content of the swagger documentation and then modify the static/swagger-initializer.js file in the URL section and define localhost:5000/swagger/ or a path in question to initialize the local project.
+
+If you have any questions or problems, you can access the [Issues](https://github.com/JoelLuna02/HoloAPI2/issues) section.
