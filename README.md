@@ -1,4 +1,4 @@
-# HoloAPI2
+# HoloAPI
 An API RESTFul fanmade based in hololive
 
 Welcome! This is the HoloAPI GitHub page. In this section you can explore a bit the source code which is made of this REST API.
