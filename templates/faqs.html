@@ -38,6 +38,7 @@
             A little of everything.<br/><br/>
             There are a good number of attributes available on the VTuber entity. It also has many-to-many and one-to-one relationships.
         </p>
+        <h4 class="fw-bold">VTuber Entity</h4>
         <div class="table-responsive">
             <table class="table table-striped table-borderless table-light">
                 <thead>
@@ -60,7 +61,7 @@
                     </tr>
                     <tr>
                         <td>gender</td>
-                        <td>Gender of the vtuber (Female, Male or other)</td>
+                        <td>Gender of the VTuber (Female, Male or other)</td>
                         <td>String</td>
                     </tr>
                     <tr>
@@ -70,12 +71,12 @@
                     </tr>
                     <tr>
                         <td>units</td>
-                        <td>Units to which the vtuber belongs</td>
+                        <td>Units to which the VTuber belongs</td>
                         <td>String list</td>
                     </tr>
                     <tr>
                         <td>debut</td>
-                        <td>Debut date of the vtuber on YouTube</td>
+                        <td>Debut date of the VTuber on YouTube</td>
                         <td>Date</td>
                     </tr>
                     <tr>
@@ -95,7 +96,7 @@
                     </tr>
                     <tr>
                         <td>height</td>
-                        <td>Height established for the vtuber (in centimeters).</td>
+                        <td>Height established for the VTuber (in centimeters).</td>
                         <td>Integer</td>
                     </tr>
                     <tr>
@@ -115,7 +116,7 @@
                     </tr>
                     <tr>
                         <td>illust</td>
-                        <td>Name of the illustrator of the vtuber.</td>
+                        <td>Name of the illustrator of the VTuber.</td>
                         <td>String</td>
                     </tr>
                     <tr>
@@ -136,6 +137,113 @@
                 </tbody>
             </table>
         </div>
+
+        <h4 class="fw-bold">Hashtags Entity</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">Atribute</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>stream_tag</td>
+                        <td>Tag used for streamings</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>fanart_tag</td>
+                        <td>Tag used for fanarts</td>
+                        <td>String</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="fw-bold">Avatar Entity</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">Atribute</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>file</td>
+                        <td>Representative image url</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>source</td>
+                        <td>Source where the image was extracted.</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>creator</td>
+                        <td>Illustration creator.</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>app</td>
+                        <td>Application to which the image can be found.</td>
+                        <td>String</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="fw-bold">Aliases Entity</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">Atribute</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>alias</td>
+                        <td>Representative nickname</td>
+                        <td>String</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="fw-bold">Social Entity</h4>
+        <div class="table-responsive">
+            <table class="table table-striped table-borderless table-light">
+                <thead>
+                    <tr>
+                        <th scope="col">Atribute</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>socialapp</td>
+                        <td>Social network name</td>
+                        <td>String</td>
+                    </tr>
+                    <tr>
+                        <td>socialurl</td>
+                        <td>Representative link of the VTuber social network.</td>
+                        <td>String</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h4 class="fw-bold">Songs Entity</h4>
 
         <h3 class="fw-bold">What are the available endpoints?</h3><hr/>
         <p>
