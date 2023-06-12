@@ -55,6 +55,10 @@ def docs():
 def frequest():
     return render_template("faqs.html")
 
+@apli.route("/support")
+def support():
+    return render_template("support.html")
+
 @apli.route("/")
 def index():
     totalvt = 0
