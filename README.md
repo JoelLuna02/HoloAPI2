@@ -7,6 +7,23 @@ Welcome! This is the HoloAPI GitHub page. In this section you can explore a bit 
 
 **For more information about how this API works, you can access the [frequently asked questions](https://holoapi.onrender.com/faqs) section.**
 
+If you want to contribute to this project and you have knowledge in web programming, you need to meet the following requirements:
+
+- Knowledge of Python
+- Basic knowledge of object-oriented programming.
+- Knowledge of Flask for Web application development
+- Knowledge in SQLAlchemy, Marshmallow, RESTful and Migrate for the creation of an API and its corresponding database.
+- Knowledge of Flask's ApiSpec for API documentation (If you wish, you can import your own documentation, any contribution will be of great help).
+
+You will need:
+- Python >= 3.7
+- Flask (Stable Version)
+- SQLAlchemy (Stable Version)
+- APISpec (0.7.0)
+- RESTful (Stable Version)
+- Migrate
+- Gunicorn (To run server)
+
 You can run this application by doing the following on your console:
 ```bash
 git clone https://github.com/JoelLuna02/HoloAPI2
